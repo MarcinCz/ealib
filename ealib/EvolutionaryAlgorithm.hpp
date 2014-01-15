@@ -3,6 +3,9 @@
 
 namespace ealib {
 
+	/**
+	*Main class for evolationary algorithm
+	*/
 	class EvolutionaryAlgorithm
 	{
 	public:
