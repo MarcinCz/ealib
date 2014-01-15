@@ -1,11 +1,6 @@
-#include "EvolutionaryAlgorithm.hpp"
+#include "EvolutionaryAlgorithm.h"
 
 namespace ealib {
-
-	EvolutionaryAlgorithm::EvolutionaryAlgorithm()
-	{
-	}
-
 
 	EvolutionaryAlgorithm::~EvolutionaryAlgorithm()
 	{
