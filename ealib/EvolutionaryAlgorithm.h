@@ -1,5 +1,4 @@
 #pragma once
-#include "boost/shared_ptr.hpp"
 #include "Result.h"
 #include "SearchSpace.h"
 #include "StopCondition.h"
@@ -15,15 +14,15 @@ namespace ealib {
 	public:
 		EvolutionaryAlgorithm(const SearchSpace& _search_space, const StopCondition& _stop_condition)
 		{
-			stop_condition = _stop_condition;
-			//search_space = _search_space;
+			*stop_condition = _stop_condition;
+			*search_space = _search_space;
 		}
 		~EvolutionaryAlgorithm();
-		Result& solveCPU();
-		Result& solveGPU();
+		Result solveCPU();
+		Result solveGPU();
 
 	private:
-		StopCondition stop_condition;
-		//const SearchSpace search_space;
+		StopCondition* stop_condition;
+		SearchSpace *search_space;
 	};
 }

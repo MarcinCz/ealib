@@ -8,15 +8,19 @@ namespace ealib {
 	class StopCondition
 	{
 	public:
-		StopCondition();
+		StopCondition(int _max_steps, float _min_fitness_value)
+		{
+			max_steps = _max_steps;
+			min_fitness_value = min_fitness_value;
+		}
 		~StopCondition() {}
-		void setMinSteps(const int _min_steps) { min_steps = _min_steps; } 
+		void setMaxSteps(const int _max_steps) { max_steps = _max_steps; } 
 		void setMinFitnessValue(const float _min_fitness_value) { min_fitness_value = _min_fitness_value; }
-		int getMinSteps() const { return min_steps; }
+		int getMaxSteps() const { return max_steps; }
 		float getMinFitnessValue() const { return min_fitness_value; }
 
 	private:
-		int min_steps;
+		int max_steps;
 		float min_fitness_value;
 	};
 }
