@@ -11,8 +11,8 @@ namespace ealib {
 	typedef std::function<double(const Individual&)> FitnessFunction;
 
 	///A class for selection of new population
-	/**User can set selection type and selection ratio (amount of selected individuals compared to population size).
-	*Default selection type is ranking, default ratio is 0.2. */
+	/**User can set selection type.
+	*Default selection type is ranking.*/
 	class Selection
 	{
 	public:
@@ -20,12 +20,10 @@ namespace ealib {
 		Selection()
 		{
 			selection_type = SelectionType::RANNKIG;
-			selection_ratio = 0.2;
 		}
 		Selection(SelectionType _selection_type, double _selection_ratio)
 		{
 			selection_type = _selection_type;
-			selection_ratio = _selection_ratio;
 		}
 		~Selection();
 		std::vector<IndividualP> doSelectionCPU(const Population& _population, const FitnessFunction& _fitness_function);
@@ -35,7 +33,6 @@ namespace ealib {
 	private: 
 		SelectionType selection_type;
 //		SearchSpace* sp;
-		double selection_ratio;
 	};
 }
 

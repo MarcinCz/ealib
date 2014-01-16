@@ -9,6 +9,11 @@
 namespace ealib {
 
 	typedef std::function<double(const Individual&)> FitnessFunction;
+	typedef boost::shared_ptr<Individual> IndividualP;
+	typedef boost::shared_ptr<Population> PopulationP;
+	typedef boost::shared_ptr<MutationOperator> MutationOperatorP;
+	typedef boost::shared_ptr<Selection> SelectionP;
+	typedef boost::shared_ptr<CrossoverOperator> CrossoverOperatorP;
 
 	///An abstract class for search space.
 	/**User should inherit from it and declare his own fitness function.
@@ -20,21 +25,23 @@ namespace ealib {
 		SearchSpace(const FitnessFunction& _fitness_function) :
 			fitness_function(_fitness_function)
 		{
+			population = PopulationP(new Population());
+			selection = SelectionP(new Selection());
 		}
 		virtual ~SearchSpace() {};
 		//virtual double calcFitnessVal(const Individual& _individual) const = 0;
 		void makeStepGPU();
 		void makeStepCPU();
-		Population getPopulation() const { return population; }
-		MutationOperator getMutationOperator() const { return mutation_operator;  }
-		Selection getSelection() const { return selection; }
-		CrossoverOperator getCrossoverOperator() const { return crossover_operator; }
+		PopulationP getPopulation() const { return population; }
+		MutationOperatorP getMutationOperator() const { return mutation_operator;  }
+		SelectionP getSelection() const { return selection; }
+		CrossoverOperatorP getCrossoverOperator() const { return crossover_operator; }
 
 	private:
-		Population population;
-		MutationOperator mutation_operator;
-		Selection selection;
-		CrossoverOperator crossover_operator;
+		PopulationP population;
+		MutationOperatorP mutation_operator;
+		SelectionP selection;
+		CrossoverOperatorP crossover_operator;
 		FitnessFunction fitness_function;
 	};
 }

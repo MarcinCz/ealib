@@ -15,8 +15,9 @@ namespace ealib{
 			individuals = std::vector<IndividualP>();
 		}
 		~Population();
-		void addIndividual(const std::vector<double> _representation)
+		void addIndividual(std::vector<double> _representation)
 		{ 
+			individuals.push_back(IndividualP(new Individual(_representation)));
 			individuals.push_back(IndividualP(new Individual(_representation)));
 		}
 		std::vector<IndividualP> getIndividuals() const { return individuals; }

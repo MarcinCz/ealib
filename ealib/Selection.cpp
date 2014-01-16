@@ -19,7 +19,7 @@ namespace ealib
 		sort(individuals.begin(),individuals.end(),
 			[](const IndividualP ind1, const IndividualP ind2)
 			{
-			return ind1->getFitnessValue() > ind2->getFitnessValue();
+			return ind1->getFitnessValue() < ind2->getFitnessValue();
 			});
 		
 		int rank_sum = ((1 + individuals.size())*individuals.size()) / 2;
@@ -33,17 +33,17 @@ namespace ealib
 			*Probability of selecting element with rank j is j/rank_sum.
 			*/
 			int rank_place = rand() % rank_sum;
-			int currect_rank_place = 0;
+			int current_rank_place = 0;
 
 			
 			for (int j = 1; j <= N; ++j)
 			{
-				if (currect_rank_place >= rank_place && currect_rank_place < rank_place + j)
+				if (rank_place >= current_rank_place && rank_place < current_rank_place + j)
 				{
 					new_individuals.push_back(individuals.at(j-1));
 					break;
 				}
-				currect_rank_place += j;
+				current_rank_place += j;
 			}
 		}
 
@@ -76,7 +76,7 @@ namespace ealib
 
 			for (int j = 0; j < N; ++j)
 			{
-				if (currect_prop_place >= prop_place && currect_prop_place < prop_place + individuals.at(j)->getFitnessValue())
+				if (prop_place >= currect_prop_place && prop_place < currect_prop_place + individuals.at(j)->getFitnessValue())
 				{
 					new_individuals.push_back(individuals.at(j));
 					break;
@@ -90,7 +90,6 @@ namespace ealib
 
 	vector<IndividualP> Selection::doSelectionCPU(const Population& _population, const FitnessFunction& _fitness_function)
 	{
-		int number_to_select = ceil(selection_ratio * static_cast<double>(_population.getPopulationSize()));
 		for (IndividualP ind : _population.getIndividuals())
 		{
 			ind->setFitnessValue(_fitness_function(*ind));
