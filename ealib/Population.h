@@ -1,6 +1,8 @@
 #pragma once
 #include <vector>
+#include <random>
 #include <boost/shared_ptr.hpp>
+#include <time.h>     
 #include "Individual.h"
 
 namespace ealib{
@@ -14,6 +16,7 @@ namespace ealib{
 		{
 			individuals = std::vector<IndividualP>();
 			representation_size = 8;
+			generator.seed(static_cast<unsigned long>(time(NULL)));
 		}
 		~Population(){}
 		void addIndividual(std::vector<double> _representation);
@@ -29,6 +32,7 @@ namespace ealib{
 	private: 
 		std::vector<IndividualP> individuals;
 		int representation_size;
+		std::default_random_engine generator;
 	};
 
 	class PopulationException :public std::runtime_error

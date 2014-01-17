@@ -1,9 +1,10 @@
 #pragma once
 #include <vector>
+#include <random>
+#include <time.h>   
 #include <boost/shared_ptr.hpp>
 #include "Individual.h"
 #include "Population.h"
-//#include "SearchSpace.h"
 
 namespace ealib {
 
@@ -21,10 +22,12 @@ namespace ealib {
 		Selection()
 		{
 			selection_type = SelectionType::RANNKIG;
+			generator.seed(static_cast<unsigned long>(time(NULL)));
 		}
-		Selection(SelectionType _selection_type, double _selection_ratio)
+		Selection(SelectionType _selection_type)
 		{
 			selection_type = _selection_type;
+			generator.seed(static_cast<unsigned long>(time(NULL)));
 		}
 		~Selection();
 		std::vector<IndividualP> doSelectionCPU(const PopulationP _population, const FitnessFunction& _fitness_function, int _number_to_select);
@@ -32,8 +35,11 @@ namespace ealib {
 		void setSelectionType(SelectionType _selection_type) { selection_type = _selection_type; }
 
 	private: 
+		std::vector<IndividualP> doSelectionRankingCPU(const PopulationP _population, int _number_to_select);
+		std::vector<IndividualP> doSelectionProportionalCPU(const PopulationP _population, int _number_to_select);
+
 		SelectionType selection_type;
-//		SearchSpace* sp;
+		std::default_random_engine generator;
 	};
 }
 

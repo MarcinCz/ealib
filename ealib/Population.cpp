@@ -23,7 +23,8 @@ namespace ealib {
 
 		for (int i = 0; i < representation_size; ++i)
 		{
-			double random_number = (static_cast<double>(rand()) / RAND_MAX) * range - _min;
+			uniform_real_distribution<double> distribution = uniform_real_distribution<double>(_min, _max);
+			double random_number = distribution(generator);
 			representation.push_back(random_number);
 		}
 

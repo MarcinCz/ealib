@@ -1,7 +1,7 @@
 #include "Selection.h"
 #include <math.h>
 #include <stdlib.h>     
-#include <time.h>       
+ 
 
 using namespace std;
 
@@ -11,7 +11,7 @@ namespace ealib
 	{
 	}
 
-	vector<IndividualP> doSelectionRankingCPU(const PopulationP _population, int _number_to_select)
+	vector<IndividualP> Selection::doSelectionRankingCPU(const PopulationP _population, int _number_to_select)
 	{
 		vector<IndividualP> individuals = _population->getIndividuals();
 		vector<IndividualP> new_individuals;
@@ -24,6 +24,7 @@ namespace ealib
 		
 		int rank_sum = ((1 + individuals.size())*individuals.size()) / 2;
 		int N = individuals.size();
+		uniform_int_distribution<int> distribution = uniform_int_distribution<int>(0, rank_sum-1);
 
 		//selecting elements
 		for (int i = 0; i < _number_to_select; ++i)
@@ -32,7 +33,7 @@ namespace ealib
 			*1-worst, N-best.
 			*Probability of selecting element with rank j is j/rank_sum.
 			*/
-			int rank_place = rand() % rank_sum;
+			int rank_place = distribution(generator);
 			int current_rank_place = 0;
 
 			
@@ -50,7 +51,7 @@ namespace ealib
 		return new_individuals;
 	}
 
-	vector<IndividualP> doSelectionProportionalCPU(const PopulationP _population, int _number_to_select)
+	vector<IndividualP> Selection::doSelectionProportionalCPU(const PopulationP _population, int _number_to_select)
 	{
 		vector<IndividualP> individuals = _population->getIndividuals();
 		vector<IndividualP> new_individuals;
@@ -64,13 +65,14 @@ namespace ealib
 		double fitness_sum = 0;
 		for_each(individuals.begin(), individuals.end(), [&fitness_sum](IndividualP ind){ fitness_sum += ind->getFitnessValue(); });
 		int N = individuals.size();
+		uniform_real_distribution<double> distribution = uniform_real_distribution<double>(0, fitness_sum);
 
 		//selecting elements
-		for (int i = 0; i < _number_to_select; ++i)
+		for(int i = 0; i < _number_to_select; ++i)
 		{
 			/*Every individual has got a probabilty of getting selected equal to fitness_value/fitness_sum
 			*/
-			double prop_place = (static_cast<double>(rand()) / RAND_MAX) * fitness_sum;
+			double prop_place = distribution(generator);
 			double currect_prop_place = 0;
 
 
@@ -94,8 +96,6 @@ namespace ealib
 		{
 			ind->setFitnessValue(_fitness_function(*ind));
 		}
-
-		srand(time(NULL));
 
 		if (selection_type == SelectionType::PROPORTIONAL)
 		{
