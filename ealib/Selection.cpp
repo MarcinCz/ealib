@@ -11,9 +11,9 @@ namespace ealib
 	{
 	}
 
-	vector<IndividualP> doSelectionRankingCPU(const Population& _population, int _number_to_select)
+	vector<IndividualP> doSelectionRankingCPU(const PopulationP _population, int _number_to_select)
 	{
-		vector<IndividualP> individuals = _population.getIndividuals();
+		vector<IndividualP> individuals = _population->getIndividuals();
 		vector<IndividualP> new_individuals;
 
 		sort(individuals.begin(),individuals.end(),
@@ -50,16 +50,16 @@ namespace ealib
 		return new_individuals;
 	}
 
-	vector<IndividualP> doSelectionProportionalCPU(const Population& _population, int _number_to_select)
+	vector<IndividualP> doSelectionProportionalCPU(const PopulationP _population, int _number_to_select)
 	{
-		vector<IndividualP> individuals = _population.getIndividuals();
+		vector<IndividualP> individuals = _population->getIndividuals();
 		vector<IndividualP> new_individuals;
 
 		sort(individuals.begin(), individuals.end(),
 			[](const IndividualP ind1, const IndividualP ind2)
-		{
-			return ind1->getFitnessValue() < ind2->getFitnessValue();
-		});
+			{
+				return ind1->getFitnessValue() < ind2->getFitnessValue();
+			});
 
 		double fitness_sum = 0;
 		for_each(individuals.begin(), individuals.end(), [&fitness_sum](IndividualP ind){ fitness_sum += ind->getFitnessValue(); });
@@ -88,9 +88,9 @@ namespace ealib
 		return new_individuals;
 	}
 
-	vector<IndividualP> Selection::doSelectionCPU(const Population& _population, const FitnessFunction& _fitness_function, int _number_to_select)
+	vector<IndividualP> Selection::doSelectionCPU(const PopulationP _population, const FitnessFunction& _fitness_function, int _number_to_select)
 	{
-		for (IndividualP ind : _population.getIndividuals())
+		for (IndividualP ind : _population->getIndividuals())
 		{
 			ind->setFitnessValue(_fitness_function(*ind));
 		}

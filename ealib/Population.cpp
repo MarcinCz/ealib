@@ -1,14 +1,10 @@
 #include "Population.h"
 #include <boost/bind/bind.hpp>
+#include <stdlib.h> 
 
 namespace ealib {
 
 	using namespace std;
-
-
-	Population::~Population()
-	{
-	}
 
 	IndividualP Population::getBestIndividual()
 	{
@@ -18,6 +14,36 @@ namespace ealib {
 				return ind1->getFitnessValue() < ind2->getFitnessValue();
 			});
 		return *iterator;
+	}
+
+	void Population::genIndividual(double _min, double _max)
+	{
+		double range = _max - _min;
+		vector<double> representation;
+
+		for (int i = 0; i < representation_size; ++i)
+		{
+			double random_number = (static_cast<double>(rand()) / RAND_MAX) * range - _min;
+			representation.push_back(random_number);
+		}
+
+		individuals.push_back(IndividualP(new Individual(representation)));
+	}
+
+	void Population::setRepresentationSize(int _representation_size)
+	{
+		if (getRepresentationSize() == _representation_size)
+			return;
+		if (getPopulationSize() != 0)
+			throw PopulationException("Population need to be empty before representation size change.");
+		representation_size = _representation_size;
+	}
+
+	void Population::addIndividual(vector<double> _representation)
+	{
+		if (getRepresentationSize() != _representation.size())
+			throw PopulationException("Wrong representation size. Current size set is " + getRepresentationSize());
+		individuals.push_back(IndividualP(new Individual(_representation)));
 	}
 }
 
