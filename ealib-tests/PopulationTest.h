@@ -8,7 +8,7 @@
 
 double myFitnessFunction(const ealib::Individual& ind)
 {
-	return ind.getRepresentation().at(0);
+	return ind.getRepresentation()->at(0);
 }
 
 class PopulationTest : CppUnit::TestFixture
@@ -62,7 +62,7 @@ public:
 		CPPUNIT_ASSERT_THROW_MESSAGE(
 			"Wrong representation size. Current size set is 8",
 			sp->getPopulation()->addIndividual(representation),
-			ealib::PopulationException);
+			ealib::exception::PopulationException);
 	}
 
 	void setRepresentationSizeTest()
@@ -74,7 +74,7 @@ public:
 		CPPUNIT_ASSERT_THROW_MESSAGE(
 			"Population need to be empty before representation size change.",
 			sp->getPopulation()->setRepresentationSize(7),
-			ealib::PopulationException);
+			ealib::exception::PopulationException);
 
 	}
 

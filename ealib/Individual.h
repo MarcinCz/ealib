@@ -1,7 +1,10 @@
 #pragma once
+#include <boost/shared_ptr.hpp>
 #include <vector>
 
 namespace ealib {
+
+	typedef boost::shared_ptr<std::vector<double>> RepresentationPtr;
 
 	///A class for individual.
 	/**It holds representation and fitness function value.
@@ -9,15 +12,15 @@ namespace ealib {
 	class Individual
 	{
 	public:
-		Individual(const std::vector<double> _representation) { representation = _representation; }
+		Individual(std::vector<double> _representation) { representation = RepresentationPtr(new std::vector<double>(_representation)); }
 		~Individual();
 		double getFitnessValue() const { return fitness_value; }
 		void setFitnessValue(double _fitness_value) { fitness_value = _fitness_value; }
-		std::vector<double> getRepresentation() const { return representation; }
-		void setRepresentation(const std::vector<double> _representation) { representation = _representation; }
+		RepresentationPtr getRepresentation() const { return representation; }
+		void setRepresentation(RepresentationPtr _representation) { representation = _representation; }
 
 	private:
 		double fitness_value;
-		std::vector<double> representation;
+		RepresentationPtr representation;
 	};
 }

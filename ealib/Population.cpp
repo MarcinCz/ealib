@@ -5,11 +5,12 @@
 namespace ealib {
 
 	using namespace std;
+	using namespace exception;
 
-	IndividualP Population::getBestIndividual()
+	IndividualPtr Population::getBestIndividual()
 	{
-		vector<IndividualP>::iterator iterator = max_element(individuals.begin(), individuals.end(),
-			[](const IndividualP ind1, const IndividualP ind2)
+		vector<IndividualPtr>::iterator iterator = max_element(individuals.begin(), individuals.end(),
+			[](const IndividualPtr ind1, const IndividualPtr ind2)
 			{
 				return ind1->getFitnessValue() < ind2->getFitnessValue();
 			});
@@ -28,7 +29,7 @@ namespace ealib {
 			representation.push_back(random_number);
 		}
 
-		individuals.push_back(IndividualP(new Individual(representation)));
+		individuals.push_back(IndividualPtr(new Individual(representation)));
 	}
 
 	void Population::setRepresentationSize(int _representation_size)
@@ -44,7 +45,7 @@ namespace ealib {
 	{
 		if (getRepresentationSize() != _representation.size())
 			throw PopulationException("Wrong representation size. Current size set is " + getRepresentationSize());
-		individuals.push_back(IndividualP(new Individual(_representation)));
+		individuals.push_back(IndividualPtr(new Individual(_representation)));
 	}
 }
 
