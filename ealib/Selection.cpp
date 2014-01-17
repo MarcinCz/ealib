@@ -11,7 +11,7 @@ namespace ealib
 	{
 	}
 
-	vector<IndividualP> doSelectionRankingCPU(const Population& _population)
+	vector<IndividualP> doSelectionRankingCPU(const Population& _population, int _number_to_select)
 	{
 		vector<IndividualP> individuals = _population.getIndividuals();
 		vector<IndividualP> new_individuals;
@@ -25,8 +25,8 @@ namespace ealib
 		int rank_sum = ((1 + individuals.size())*individuals.size()) / 2;
 		int N = individuals.size();
 
-		//selecting N elements
-		for (int i = 0; i < N; ++i)
+		//selecting elements
+		for (int i = 0; i < _number_to_select; ++i)
 		{
 			/*Every individual has got a rank from 1 to N.
 			*1-worst, N-best.
@@ -50,7 +50,7 @@ namespace ealib
 		return new_individuals;
 	}
 
-	vector<IndividualP> doSelectionProportionalCPU(const Population& _population)
+	vector<IndividualP> doSelectionProportionalCPU(const Population& _population, int _number_to_select)
 	{
 		vector<IndividualP> individuals = _population.getIndividuals();
 		vector<IndividualP> new_individuals;
@@ -65,8 +65,8 @@ namespace ealib
 		for_each(individuals.begin(), individuals.end(), [&fitness_sum](IndividualP ind){ fitness_sum += ind->getFitnessValue(); });
 		int N = individuals.size();
 
-		//selecting N elements
-		for (int i = 0; i < N; ++i)
+		//selecting elements
+		for (int i = 0; i < _number_to_select; ++i)
 		{
 			/*Every individual has got a probabilty of getting selected equal to fitness_value/fitness_sum
 			*/
@@ -88,7 +88,7 @@ namespace ealib
 		return new_individuals;
 	}
 
-	vector<IndividualP> Selection::doSelectionCPU(const Population& _population, const FitnessFunction& _fitness_function)
+	vector<IndividualP> Selection::doSelectionCPU(const Population& _population, const FitnessFunction& _fitness_function, int _number_to_select)
 	{
 		for (IndividualP ind : _population.getIndividuals())
 		{
@@ -99,11 +99,11 @@ namespace ealib
 
 		if (selection_type == SelectionType::PROPORTIONAL)
 		{
-			return doSelectionProportionalCPU(_population);
+			return doSelectionProportionalCPU(_population, _number_to_select);
 		}
 		else
 		{
-			return doSelectionRankingCPU(_population);
+			return doSelectionRankingCPU(_population,_number_to_select);
 		}
 	}
 }

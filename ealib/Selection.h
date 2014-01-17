@@ -26,8 +26,8 @@ namespace ealib {
 			selection_type = _selection_type;
 		}
 		~Selection();
-		std::vector<IndividualP> doSelectionCPU(const Population& _population, const FitnessFunction& _fitness_function);
-		std::vector<IndividualP> doSelectionGPU(const Population& _population, const FitnessFunction& _fitness_function);
+		std::vector<IndividualP> doSelectionCPU(const Population& _population, const FitnessFunction& _fitness_function, int _number_to_select);
+		std::vector<IndividualP> doSelectionGPU(const Population& _population, const FitnessFunction& _fitness_function, int _number_to_select);
 		void setSelectionType(SelectionType _selection_type) { selection_type = _selection_type; }
 
 	private: 
