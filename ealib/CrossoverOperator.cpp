@@ -1,6 +1,6 @@
 #include "CrossoverOperator.h"
 
-namespace ealib {
+namespace ealib { 
 
 	CrossoverOperator::CrossoverOperator()
 	{
