@@ -40,23 +40,23 @@ namespace ealib
 		};
 
 		class NormalMutationOperatorCPU:
-			public NormalMutationOperator, MutationOperatorCPU
+			public NormalMutationOperator, public MutationOperatorCPU
 		{
 		public:
 			NormalMutationOperatorCPU(double _standard_deviation, double _probability):
 				NormalMutationOperator(_standard_deviation, _probability) {};
 			~NormalMutationOperatorCPU() {};
-			void doMutation(PopulationPtr& _population);
+			void doMutation(const PopulationPtr& _population);
 		};
 
 		class NormalMutationOperatorGPU:
-			public NormalMutationOperator, MutationOperatorGPU
+			public NormalMutationOperator, public MutationOperatorGPU
 		{
 		public:
 			NormalMutationOperatorGPU(double _standard_deviation, double _probability):
 				NormalMutationOperator(_standard_deviation, _probability) {};
 			~NormalMutationOperatorGPU() {};
-			void doMutation(PopulationPtr& _population);
+			void doMutation(const PopulationPtr& _population);
 		};
 	}
 }

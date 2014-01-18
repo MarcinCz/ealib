@@ -46,7 +46,7 @@ namespace ealib
 			UniformMutationOperatorCPU(double _range, double _probability):
 				UniformMutationOperator(_range, _probability) {};
 			~UniformMutationOperatorCPU() {};
-			void doMutation(PopulationPtr& _population);
+			void doMutation(const PopulationPtr& _population);
 		};
 
 
@@ -57,7 +57,7 @@ namespace ealib
 			UniformMutationOperatorGPU(double _range, double _probability):
 				UniformMutationOperator(_range, _probability) {};
 			~UniformMutationOperatorGPU() {};
-			void doMutation(PopulationPtr& _population);
+			void doMutation(const PopulationPtr& _population);
 		};
 	}
 }

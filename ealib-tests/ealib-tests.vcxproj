@@ -72,6 +72,7 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CrossoverTest.h" />
     <ClInclude Include="MutationTest.h" />
     <ClInclude Include="PopulationTest.h" />
     <ClInclude Include="SelectionTest.h" />

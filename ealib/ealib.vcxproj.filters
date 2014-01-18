@@ -27,9 +27,6 @@
     <ClCompile Include="Population.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MutationOperatorFabric.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="CrossoverOperator.cpp">
       <Filter>Operators</Filter>
     </ClCompile>
@@ -38,6 +35,9 @@
     </ClCompile>
     <ClCompile Include="UniformMutationOperator.cpp">
       <Filter>Operators</Filter>
+    </ClCompile>
+    <ClCompile Include="OperatorFabric.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -62,9 +62,6 @@
     <ClInclude Include="SearchSpace.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="OperatorFabric.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="MutationOperator.h">
       <Filter>Operators</Filter>
     </ClInclude>
@@ -76,6 +73,9 @@
     </ClInclude>
     <ClInclude Include="CrossoverOperator.h">
       <Filter>Operators</Filter>
+    </ClInclude>
+    <ClInclude Include="OperatorFabric.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -3,6 +3,7 @@
 #include "PopulationTest.h"
 #include "SelectionTest.h"
 #include "MutationTest.h"
+#include "CrossoverTest.h"
 
 int main()
 {
@@ -10,6 +11,7 @@ int main()
 	runner.addTest(PopulationTest::suite());
 	runner.addTest(SelectionTest::suite());
 	runner.addTest(MutationTest::suite());
+	runner.addTest(CrossoverTest::suite());
 	runner.run();
 	std::cin.get();
 	return 0;

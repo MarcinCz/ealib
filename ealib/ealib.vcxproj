@@ -81,7 +81,7 @@
   <ItemGroup>
     <ClCompile Include="CrossoverOperator.cpp" />
     <ClCompile Include="EvolutionaryAlgorithm.cpp" />
-    <ClCompile Include="MutationOperatorFabric.cpp" />
+    <ClCompile Include="OperatorFabric.cpp" />
     <ClCompile Include="NormalMutationOperator.cpp" />
     <ClCompile Include="Population.cpp" />
     <ClCompile Include="Selection.cpp" />

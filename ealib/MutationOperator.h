@@ -16,22 +16,22 @@ namespace ealib{
 		{
 		public:
 			virtual ~MutationOperator() {};
-			virtual void doMutation(PopulationPtr _population) = 0;
+			virtual void doMutation(const PopulationPtr& _population) = 0;
 		};
 
 
-		class MutationOperatorCPU: MutationOperator
+		class MutationOperatorCPU: public MutationOperator
 		{
 		public:
 			virtual ~MutationOperatorCPU() {};
-			virtual void doMutation(PopulationPtr _population) = 0;
+			virtual void doMutation(const PopulationPtr& _population) = 0;
 		};
 
-		class MutationOperatorGPU: MutationOperator
+		class MutationOperatorGPU: public MutationOperator
 		{
 		public:
 			virtual ~MutationOperatorGPU() {};
-			virtual void doMutation(PopulationPtr _population) = 0;
+			virtual void doMutation(const PopulationPtr& _population) = 0;
 		};
 
 		typedef boost::shared_ptr<MutationOperator> MutationOperatorPtr;

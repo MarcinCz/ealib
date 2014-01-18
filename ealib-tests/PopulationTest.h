@@ -4,12 +4,10 @@
 #include <cppunit\TestCase.h>
 #include <cppunit\TestSuite.h>
 #include <cppunit\TestCaller.h>
+#include <boost\bind.hpp>
 #include <vector>
 
-double myFitnessFunction(const ealib::Individual& ind)
-{
-	return ind.getRepresentation()->at(0);
-}
+
 
 class PopulationTest : CppUnit::TestFixture
 {
@@ -27,9 +25,14 @@ public:
 		return suite;
 	}
 
+	double myFitnessFunction(const ealib::Individual& ind)
+	{
+		return ind.getRepresentation()->at(0);
+	}
+
 	void setUp()
 	{
-		sp = new ealib::SearchSpace(&myFitnessFunction);
+		sp = new ealib::SearchSpace(boost::bind(&PopulationTest::myFitnessFunction, this, _1));
 		sp->getPopulation()->setRepresentationSize(8);
 	}
 

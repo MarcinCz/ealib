@@ -6,7 +6,7 @@ namespace ealib
 {
 	namespace eaoperator {
 
-		void UniformMutationOperatorCPU::doMutation(PopulationPtr& _population)
+		void UniformMutationOperatorCPU::doMutation(const PopulationPtr& _population)
 		{
 			vector<IndividualPtr> individuals = _population->getIndividuals();
 
@@ -23,7 +23,7 @@ namespace ealib
 			}
 		}
 
-		void UniformMutationOperatorGPU::doMutation(PopulationPtr& _population)
+		void UniformMutationOperatorGPU::doMutation(const PopulationPtr& _population)
 		{
 
 		}

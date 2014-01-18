@@ -29,5 +29,8 @@
     <ClInclude Include="MutationTest.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="CrossoverTest.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
