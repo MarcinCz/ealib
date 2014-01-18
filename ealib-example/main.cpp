@@ -2,7 +2,7 @@
 #include <SearchSpace.h>
 #include <Individual.h>
 #include <vector>
-#include <boost/shared_ptr.hpp>
+//#include <boost/shared_ptr.hpp>
 
 using namespace std;
 using namespace ealib;
@@ -33,10 +33,10 @@ int main()
 	my_sp.getPopulation()->addIndividual(representation4);
 	my_sp.getPopulation()->genIndividual(0, 10);
 	my_sp.getPopulation()->genIndividual(4.5, 15.5);
-	vector<IndividualP> population_old = my_sp.getPopulation()->getIndividuals();
-	vector<IndividualP> population_new_ranking = my_sp.getSelection()->doSelectionCPU(my_sp.getPopulation(), *myFitnessFunction, 6);
+	vector<IndividualPtr> population_old = my_sp.getPopulation()->getIndividuals();
+	vector<IndividualPtr> population_new_ranking = my_sp.getSelection()->doSelectionCPU(my_sp.getPopulation(), *myFitnessFunction, 6);
 	my_sp.getSelection()->setSelectionType(Selection::SelectionType::PROPORTIONAL);
-	vector<IndividualP> population_new_proportional = my_sp.getSelection()->doSelectionCPU(my_sp.getPopulation(), *myFitnessFunction, 7);
+	vector<IndividualPtr> population_new_proportional = my_sp.getSelection()->doSelectionCPU(my_sp.getPopulation(), *myFitnessFunction, 7);
 	return 0;
 	//ealib::StopCondition sc = ealib::StopCondition(10, 5.0);
 	//ealib::EvolutionaryAlgorithm(my_sp, sc);

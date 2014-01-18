@@ -30,13 +30,13 @@
     <ClCompile Include="Population.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Individual.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="NormalDistMutationOperator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="UniformDistMutationOperator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MutationOperatorFabric.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -72,6 +72,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="UniformDistMutationOperator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="OperatorFabric.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

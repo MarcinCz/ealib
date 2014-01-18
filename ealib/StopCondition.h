@@ -12,7 +12,7 @@ namespace ealib {
 		{
 			max_steps = _max_steps;
 			min_fitness_value = 0;
-			min_fitness_set = true;
+			min_fitness_value_set = true;
 			max_steps_set = false;
 		}
 
@@ -20,7 +20,7 @@ namespace ealib {
 		{
 			min_fitness_value = min_fitness_value;
 			max_steps = 0;
-			min_fitness_set = true;
+			min_fitness_value_set = true;
 			max_steps_set = false;
 		}
 
@@ -28,24 +28,24 @@ namespace ealib {
 		{
 			max_steps = _max_steps;
 			min_fitness_value = min_fitness_value;
-			min_fitness_set = true;
+			min_fitness_value_set = true;
 			max_steps_set = true;
 		}
 		~StopCondition() {}
 		void setMaxSteps(const int _max_steps) { max_steps = _max_steps; max_steps_set = true; } 
-		void setMinFitnessValue(const float _min_fitness_value) { min_fitness_value = _min_fitness_value; min_fitness_set = true; }
+		void setMinFitnessValue(const float _min_fitness_value) { min_fitness_value = _min_fitness_value; min_fitness_value_set = true; }
 		///Returns max number of steps before algorithm stops. 0 if not set.
 		int getMaxSteps() const { return max_steps; }
 		///Returns min fitness value before algorithm stops. 0.0 if not set.
 		float getMinFitnessValue() const { return min_fitness_value; }
-		bool isMinFitnessValueSet() { return min_fitness_value; }
+		bool isMinFitnessValueSet() { return min_fitness_value_set; }
 		bool isMaxStepsSet() { return max_steps_set; }
 
 	private:
 		int max_steps;
 		float min_fitness_value;
 		bool max_steps_set;
-		bool min_fitness_set;
+		bool min_fitness_value_set;
 	};
 }
 

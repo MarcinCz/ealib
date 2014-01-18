@@ -1,6 +1,7 @@
 #pragma once
 #include <random>
-#include "mutationoperator.h"
+#include <boost/shared_ptr.hpp>
+#include "MutationOperator.h"
 
 namespace ealib
 {
@@ -39,6 +40,7 @@ namespace ealib
 		double probability;
 		double standard_deviation;
 	};
+
 }
 
 

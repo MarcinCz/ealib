@@ -19,7 +19,7 @@ namespace ealib{
 		}
 		~Population(){}
 		void addIndividual(std::vector<double> _representation);
-		void genIndividual(double _min, double _max);
+		void genIndividual(double _min, double _max, int _number = 1);
 		std::vector<IndividualPtr> getIndividuals() const { return individuals; }
 		void clearPopulation() { individuals.clear(); }
 		IndividualPtr getBestIndividual();

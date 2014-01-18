@@ -16,10 +16,10 @@ namespace ealib {
 	class Selection
 	{
 	public:
-		enum SelectionType { RANNKIG, PROPORTIONAL };
+		enum SelectionType { RANKIG, PROPORTIONAL };
 		Selection()
 		{
-			selection_type = SelectionType::RANNKIG;
+			selection_type = SelectionType::RANKIG;
 			generator.seed(static_cast<unsigned long>(time(NULL)));
 		}
 		Selection(SelectionType _selection_type)
@@ -27,7 +27,7 @@ namespace ealib {
 			selection_type = _selection_type;
 			generator.seed(static_cast<unsigned long>(time(NULL)));
 		}
-		~Selection();
+		~Selection() {}
 		std::vector<IndividualPtr> doSelectionCPU(const PopulationPtr& _population, const FitnessFunction& _fitness_function, int _number_to_select);
 		std::vector<IndividualPtr> doSelectionGPU(const PopulationPtr& _population, const FitnessFunction& _fitness_function, int _number_to_select);
 		void setSelectionType(SelectionType _selection_type) { selection_type = _selection_type; }
@@ -39,6 +39,8 @@ namespace ealib {
 		SelectionType selection_type;
 		std::default_random_engine generator;
 	};
+
+	typedef boost::shared_ptr<Selection> SelectionPtr;
 }
 
 

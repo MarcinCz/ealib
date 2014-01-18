@@ -1,6 +1,7 @@
 #pragma once
 #include <random>
 #include <vector>
+#include <boost/shared_ptr.hpp>
 #include "Population.h"
 
 namespace ealib{
@@ -12,9 +13,9 @@ namespace ealib{
 	class MutationOperator
 	{
 	public:
-		virtual ~MutationOperator() = 0;
-		virtual void doMutationCPU(PopulationPtr _population);
-		virtual void doMutationGPU(PopulationPtr _population);
+		virtual ~MutationOperator() {};
+		virtual void doMutationCPU(PopulationPtr& _population) = 0;
+		virtual void doMutationGPU(PopulationPtr& _population) = 0;
 	};
 
 	namespace exception {
@@ -26,6 +27,7 @@ namespace ealib{
 		};
 	}
 	
+	typedef boost::shared_ptr<MutationOperator> MutationOperatorPtr;
 }
 
 

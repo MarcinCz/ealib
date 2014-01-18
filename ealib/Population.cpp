@@ -17,19 +17,23 @@ namespace ealib {
 		return *iterator;
 	}
 
-	void Population::genIndividual(double _min, double _max)
+	void Population::genIndividual(double _min, double _max, int _number)
 	{
 		double range = _max - _min;
-		vector<double> representation;
 
-		for (int i = 0; i < representation_size; ++i)
+		for (int j = 0; j < _number; ++j)
 		{
-			uniform_real_distribution<double> distribution = uniform_real_distribution<double>(_min, _max);
-			double random_number = distribution(generator);
-			representation.push_back(random_number);
+			vector<double> representation;
+			for (int i = 0; i < representation_size; ++i)
+			{
+				uniform_real_distribution<double> distribution = uniform_real_distribution<double>(_min, _max);
+				double random_number = distribution(generator);
+				representation.push_back(random_number);
+			}
+			individuals.push_back(IndividualPtr(new Individual(representation)));
 		}
-
-		individuals.push_back(IndividualPtr(new Individual(representation)));
+		
+		
 	}
 
 	void Population::setRepresentationSize(int _representation_size)

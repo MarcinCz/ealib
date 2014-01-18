@@ -69,6 +69,7 @@
     <ClInclude Include="EvolutionaryAlgorithm.h" />
     <ClInclude Include="Individual.h" />
     <ClInclude Include="MutationOperator.h" />
+    <ClInclude Include="OperatorFabric.h" />
     <ClInclude Include="NormalDistMutationOperator.h" />
     <ClInclude Include="Population.h" />
     <ClInclude Include="Result.h" />
@@ -80,7 +81,7 @@
   <ItemGroup>
     <ClCompile Include="CrossoverOperator.cpp" />
     <ClCompile Include="EvolutionaryAlgorithm.cpp" />
-    <ClCompile Include="Individual.cpp" />
+    <ClCompile Include="MutationOperatorFabric.cpp" />
     <ClCompile Include="NormalDistMutationOperator.cpp" />
     <ClCompile Include="Population.cpp" />
     <ClCompile Include="Selection.cpp" />

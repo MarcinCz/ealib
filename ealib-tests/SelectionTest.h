@@ -23,7 +23,7 @@ public:
 
 	void doSelectionRankingCPUTest()
 	{
-		std::vector<ealib::IndividualP> selected_individuals;
+		std::vector<ealib::IndividualPtr> selected_individuals;
 		sp->getSelection()->setSelectionType(ealib::Selection::SelectionType::RANNKIG);
 		selected_individuals = sp->getSelection()->doSelectionCPU(sp->getPopulation(), &myFitnessFunction, 6);
 		size_t size = 6;
@@ -32,7 +32,7 @@ public:
 	
 	void doSelectionProportionalCPUTest()
 	{
-		std::vector<ealib::IndividualP> selected_individuals;
+		std::vector<ealib::IndividualPtr> selected_individuals;
 		sp->getSelection()->setSelectionType(ealib::Selection::SelectionType::PROPORTIONAL);
 		selected_individuals = sp->getSelection()->doSelectionCPU(sp->getPopulation(), &myFitnessFunction, 6);
 		size_t size = 6;

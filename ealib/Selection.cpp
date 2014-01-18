@@ -1,16 +1,9 @@
-#include "Selection.h"
-#include <math.h>
-#include <stdlib.h>     
+#include "Selection.h"   
  
-
 using namespace std;
 
 namespace ealib
 {
-	Selection::~Selection()
-	{
-	}
-
 	vector<IndividualPtr> Selection::doSelectionRankingCPU(const PopulationPtr& _population, int _number_to_select)
 	{
 		vector<IndividualPtr> individuals = _population->getIndividuals();
