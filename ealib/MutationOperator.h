@@ -6,18 +6,37 @@
 
 namespace ealib{
 
-	//typedef boost::shared_ptr<Population> PopulationPtr;
+	namespace eaoperator {
 
-	/** Class for mutation operator, provided by user when creating an algorithm.
-	*/
-	class MutationOperator
-	{
-	public:
-		virtual ~MutationOperator() {};
-		virtual void doMutationCPU(PopulationPtr& _population) = 0;
-		virtual void doMutationGPU(PopulationPtr& _population) = 0;
-	};
+		//typedef boost::shared_ptr<Population> PopulationPtr;
 
+		/** Class for mutation operator, provided by user when creating an algorithm.
+		*/
+		class MutationOperator
+		{
+		public:
+			virtual ~MutationOperator() {};
+			virtual void doMutation(PopulationPtr _population) = 0;
+		};
+
+
+		class MutationOperatorCPU: MutationOperator
+		{
+		public:
+			virtual ~MutationOperatorCPU() {};
+			virtual void doMutation(PopulationPtr _population) = 0;
+		};
+
+		class MutationOperatorGPU: MutationOperator
+		{
+		public:
+			virtual ~MutationOperatorGPU() {};
+			virtual void doMutation(PopulationPtr _population) = 0;
+		};
+
+		typedef boost::shared_ptr<MutationOperator> MutationOperatorPtr;
+	}
+	
 	namespace exception {
 		class MutationOperatorException :public std::runtime_error
 		{
@@ -27,7 +46,7 @@ namespace ealib{
 		};
 	}
 	
-	typedef boost::shared_ptr<MutationOperator> MutationOperatorPtr;
+	
 }
 
 

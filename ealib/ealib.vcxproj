@@ -70,22 +70,22 @@
     <ClInclude Include="Individual.h" />
     <ClInclude Include="MutationOperator.h" />
     <ClInclude Include="OperatorFabric.h" />
-    <ClInclude Include="NormalDistMutationOperator.h" />
+    <ClInclude Include="NormalMutationOperator.h" />
     <ClInclude Include="Population.h" />
     <ClInclude Include="Result.h" />
     <ClInclude Include="SearchSpace.h" />
     <ClInclude Include="Selection.h" />
     <ClInclude Include="StopCondition.h" />
-    <ClInclude Include="UniformDistMutationOperator.h" />
+    <ClInclude Include="UniformMutationOperator.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CrossoverOperator.cpp" />
     <ClCompile Include="EvolutionaryAlgorithm.cpp" />
     <ClCompile Include="MutationOperatorFabric.cpp" />
-    <ClCompile Include="NormalDistMutationOperator.cpp" />
+    <ClCompile Include="NormalMutationOperator.cpp" />
     <ClCompile Include="Population.cpp" />
     <ClCompile Include="Selection.cpp" />
-    <ClCompile Include="UniformDistMutationOperator.cpp" />
+    <ClCompile Include="UniformMutationOperator.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

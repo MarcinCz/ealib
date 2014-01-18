@@ -21,33 +21,27 @@
     <ClCompile Include="EvolutionaryAlgorithm.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CrossoverOperator.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Selection.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Population.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="NormalDistMutationOperator.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="UniformDistMutationOperator.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="MutationOperatorFabric.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CrossoverOperator.cpp">
+      <Filter>Operators</Filter>
+    </ClCompile>
+    <ClCompile Include="NormalMutationOperator.cpp">
+      <Filter>Operators</Filter>
+    </ClCompile>
+    <ClCompile Include="UniformMutationOperator.cpp">
+      <Filter>Operators</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EvolutionaryAlgorithm.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CrossoverOperator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MutationOperator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Selection.h">
@@ -68,14 +62,20 @@
     <ClInclude Include="SearchSpace.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="NormalDistMutationOperator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="UniformDistMutationOperator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="OperatorFabric.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MutationOperator.h">
+      <Filter>Operators</Filter>
+    </ClInclude>
+    <ClInclude Include="NormalMutationOperator.h">
+      <Filter>Operators</Filter>
+    </ClInclude>
+    <ClInclude Include="UniformMutationOperator.h">
+      <Filter>Operators</Filter>
+    </ClInclude>
+    <ClInclude Include="CrossoverOperator.h">
+      <Filter>Operators</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
