@@ -7,8 +7,6 @@
 
 namespace ealib{
 
-	typedef boost::shared_ptr<Individual> IndividualPtr;
-
 	///A class for individuals population.
 	class Population
 	{
@@ -44,4 +42,6 @@ namespace ealib{
 			PopulationException(std::string msg) :std::runtime_error(msg.c_str()){}
 		};
 	}
+
+	typedef boost::shared_ptr<Population> PopulationPtr;
 }

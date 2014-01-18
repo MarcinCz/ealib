@@ -4,7 +4,6 @@
 
 namespace ealib
 {
-	typedef boost::shared_ptr<Population> PopulationP;
 
 	class UniformDistMutationOperator :
 	public MutationOperator
@@ -21,8 +20,8 @@ namespace ealib
 			prob_distribution = std::uniform_real_distribution<double>(0,100);
 		}
 		~UniformDistMutationOperator() {}
-		void doMutationCPU(PopulationP& _population);
-		void doMutationGPU(PopulationP& _population);
+		void doMutationCPU(PopulationPtr& _population);
+		void doMutationGPU(PopulationPtr& _population);
 		void setRange(double _range) { range = _range; }
 		double getRange() { return range; }
 		void setProbability(double _probability)
@@ -33,6 +32,7 @@ namespace ealib
 			probability = _probability;
 		}
 		double getProbability() { return probability; }
+
 	private:
 		std::default_random_engine generator;
 		std::uniform_real_distribution<double> prob_distribution;

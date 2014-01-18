@@ -4,7 +4,6 @@
 
 namespace ealib
 {
-	typedef boost::shared_ptr<Population> PopulationP;
 
 	class NormalDistMutationOperator :
 	public MutationOperator
@@ -21,8 +20,8 @@ namespace ealib
 			prob_distribution = std::uniform_real_distribution<double>(0,100);
 		}
 		~NormalDistMutationOperator() {}
-		void doMutationCPU(PopulationP& _population);
-		void doMutationGPU(PopulationP& _population);
+		void doMutationCPU(PopulationPtr& _population);
+		void doMutationGPU(PopulationPtr& _population);
 		void setStandardDeviation(double _standard_deviation) { standard_deviation =_standard_deviation; }
 		double getStandardDeviation() { return standard_deviation; }
 		void setProbability(double _probability)

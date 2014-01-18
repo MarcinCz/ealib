@@ -9,7 +9,7 @@ using namespace ealib;
 
 double myFitnessFunction(const ealib::Individual& ind)
 {
-	return ind.getRepresentation().at(0);
+	return ind.getRepresentation()->at(0);
 }
 
 int main()
@@ -20,7 +20,7 @@ int main()
 	vector<double> representation2;
 	vector<double> representation3;
 	vector<double> representation4;
-	for (int i = 1; i < 10; i++)
+	for (int i = 1; i < 9; i++)
 	{
 		representation1.push_back(i);
 		representation2.push_back(3*i);

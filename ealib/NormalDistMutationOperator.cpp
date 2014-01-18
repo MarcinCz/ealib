@@ -5,7 +5,7 @@ using namespace std;
 namespace ealib
 {
 	
-	void NormalDistMutationOperator::doMutationCPU(PopulationP& _population)
+	void NormalDistMutationOperator::doMutationCPU(PopulationPtr& _population)
 	{
 		vector<IndividualPtr> individuals = _population->getIndividuals();
 

@@ -23,4 +23,6 @@ namespace ealib {
 		double fitness_value;
 		RepresentationPtr representation;
 	};
+
+	typedef boost::shared_ptr<Individual> IndividualPtr;
 }
