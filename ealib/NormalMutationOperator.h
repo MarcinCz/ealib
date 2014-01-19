@@ -14,10 +14,7 @@ namespace ealib
 			NormalMutationOperator(double _standard_deviation, double _probability):
 				standard_deviation(_standard_deviation)
 			{
-				if(_probability < 0 || _probability > 100)
-					throw exception::MutationOperatorException("Probability must be between or equal to 0 and 100.");
-
-				probability = _probability;
+				setProbability(_probability);
 				distribution = std::normal_distribution<double>(0.0, _standard_deviation);
 				prob_distribution = std::uniform_real_distribution<double>(0,100);
 			};

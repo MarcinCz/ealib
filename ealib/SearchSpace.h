@@ -8,7 +8,7 @@
 
 namespace ealib {
 
-	typedef std::function<double(const Individual&)> FitnessFunction;
+
 
 	///An abstract class for search space.
 	/**User should inherit from it and declare his own fitness function.

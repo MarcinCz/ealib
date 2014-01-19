@@ -13,10 +13,7 @@ namespace ealib
 			UniformMutationOperator(double _range, double _probability):
 				range(_range)
 			{
-				if(_probability < 0 || _probability > 100)
-					throw exception::MutationOperatorException("Probability must be between or equal to 0 and 100.");
-
-				probability = _probability;
+				setProbability(_probability);
 				distribution = std::uniform_real_distribution<double>(-range, range);
 				prob_distribution = std::uniform_real_distribution<double>(0,100);
 			}

@@ -9,15 +9,20 @@ namespace ealib {
 	class Result
 	{
 	public:
-		Result();
+		Result(int _steps_number, double _running_time, const Individual& _best_individual)
+		{
+			steps_number = _steps_number;
+			running_time = _running_time;
+			*best_individual = _best_individual;
+		}
 		~Result();
-		Individual getBestIndividual() { return bestIndividual; }
+		Individual getBestIndividual() { return *best_individual; }
 		int getStepsNumber() const { return steps_number; }
 		///Returns algorithm's running time in seconds.
 		double getRunningTime() const { return running_time; }
 
 	private:
-		Individual bestIndividual;
+		Individual *best_individual;
 		int steps_number;
 		double running_time;
 	};

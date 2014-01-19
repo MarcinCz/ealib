@@ -76,6 +76,7 @@
     <ClInclude Include="MutationTest.h" />
     <ClInclude Include="PopulationTest.h" />
     <ClInclude Include="SelectionTest.h" />
+    <ClInclude Include="StopConditionTest.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ealib\ealib.vcxproj">
