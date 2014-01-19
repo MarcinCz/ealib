@@ -21,7 +21,7 @@ namespace ealib
 				prob_distribution = std::uniform_real_distribution<double>(0,100);
 			}
 			~UniformMutationOperator() {}
-			virtual void doMutation(const PopulationPtr& _population) = 0;
+			virtual void doMutation(Population& _population) = 0;
 			void setRange(double _range) { range = _range; }
 			double getRange() { return range; }
 			void setProbability(double _probability)
@@ -48,7 +48,7 @@ namespace ealib
 			UniformMutationOperatorCPU(double _range, double _probability):
 				UniformMutationOperator(_range, _probability) {};
 			~UniformMutationOperatorCPU() {};
-			void doMutation(const PopulationPtr& _population);
+			void doMutation(Population& _population);
 		};
 
 
@@ -59,7 +59,7 @@ namespace ealib
 			UniformMutationOperatorGPU(double _range, double _probability):
 				UniformMutationOperator(_range, _probability) {};
 			~UniformMutationOperatorGPU() {};
-			void doMutation(const PopulationPtr& _population);
+			void doMutation(Population& _population);
 		};
 
 		typedef boost::shared_ptr<UniformMutationOperator> UniformMutationOperatorPtr;

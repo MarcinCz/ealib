@@ -3,7 +3,7 @@
 #include <Individual.h>
 #include <NormalMutationOperator.h>
 #include <UniformMutationOperator.h>
-#include <OperatorFabric.h>
+#include <ObjectFactory.h>
 #include <cppunit\TestCase.h>
 #include <cppunit\TestSuite.h>
 #include <cppunit\TestCaller.h>
@@ -31,24 +31,23 @@ public:
 
 	void setUp()
 	{
-		sp = new ealib::SearchSpace(boost::bind(&MutationTest::myFitnessFunction, this, _1));
-		sp->getPopulation()->setRepresentationSize(8);
-		sp->getPopulation()->genIndividual(0, 1, 100);
+		pop.setRepresentationSize(8);
+		pop.genIndividual(0, 1, 100);
 	}
 
 	void tearDown()
 	{
-		delete sp;
+		pop.clearPopulation();
 	}
 
 	void doMutationTest()
 	{
 
-		ealib::eaoperator::UniformMutationOperatorPtr uniform_mutation_opeator = ealib::OperatorCPUFabric::getInstance().getUniformMutationOperator(2, 100);
-		CPPUNIT_ASSERT_NO_THROW(uniform_mutation_opeator->doMutation(sp->getPopulation()));
+		ealib::eaoperator::UniformMutationOperatorPtr uniform_mutation_opeator = ealib::CPUObjectFactory::getInstance().getUniformMutationOperator(2, 100);
+		CPPUNIT_ASSERT_NO_THROW(uniform_mutation_opeator->doMutation(pop));
 
-		ealib::eaoperator::NormalMutationOperatorPtr normal_mutation_opeator = ealib::OperatorCPUFabric::getInstance().getNormalMutationOperator(2, 100);
-		CPPUNIT_ASSERT_NO_THROW(normal_mutation_opeator->doMutation(sp->getPopulation()));
+		ealib::eaoperator::NormalMutationOperatorPtr normal_mutation_opeator = ealib::CPUObjectFactory::getInstance().getNormalMutationOperator(2, 100);
+		CPPUNIT_ASSERT_NO_THROW(normal_mutation_opeator->doMutation(pop));
 
 		CPPUNIT_ASSERT(true);
 		
@@ -57,15 +56,15 @@ public:
 	void wrongProbabilityTest()
 	{
 		CPPUNIT_ASSERT_THROW_MESSAGE("Probability must be between or equal to 0 and 100.",
-			ealib::OperatorCPUFabric::getInstance().getUniformMutationOperator(2, 101),
+			ealib::CPUObjectFactory::getInstance().getUniformMutationOperator(2, 101),
 			ealib::exception::MutationOperatorException);
 		
 		CPPUNIT_ASSERT_THROW_MESSAGE("Probability must be between or equal to 0 and 100.",
-			ealib::OperatorCPUFabric::getInstance().getNormalMutationOperator(2, 101),
+			ealib::CPUObjectFactory::getInstance().getNormalMutationOperator(2, 101),
 			ealib::exception::MutationOperatorException);
 	}
 
 private:
-	ealib::SearchSpace *sp;
+	ealib::Population pop;
 };
 

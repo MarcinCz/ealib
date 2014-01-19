@@ -31,9 +31,7 @@ namespace ealib {
 				representation.push_back(random_number);
 			}
 			individuals.push_back(IndividualPtr(new Individual(representation)));
-		}
-		
-		
+		}	
 	}
 
 	void Population::setRepresentationSize(int _representation_size)
@@ -51,5 +49,6 @@ namespace ealib {
 			throw PopulationException("Wrong representation size. Current size set is " + getRepresentationSize());
 		individuals.push_back(IndividualPtr(new Individual(_representation)));
 	}
+
 }
 

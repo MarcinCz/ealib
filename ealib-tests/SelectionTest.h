@@ -1,4 +1,5 @@
-#include <SearchSpace.h>
+#include <ObjectFactory.h>
+#include <Selection.h>
 #include <Population.h>
 #include <Individual.h>
 #include <boost\bind.hpp>
@@ -29,36 +30,31 @@ public:
 
 	void doSelectionRankingCPUTest()
 	{
-		std::vector<ealib::IndividualPtr> selected_individuals;
-		sp->getSelection()->setSelectionType(ealib::Selection::SelectionType::RANKIG);
-		selected_individuals = sp->getSelection()->doSelectionCPU(sp->getPopulation(), boost::bind(&SelectionTest::myFitnessFunction, this, _1), 6);
-		size_t size = 6;
-		CPPUNIT_ASSERT_EQUAL(size, selected_individuals.size());
+		ealib::SelectionPtr selection = ealib::CPUObjectFactory::getInstance().getSelection(ealib::Selection::SelectionType::RANKIG);
+		selection->doSelection(pop, boost::bind(&SelectionTest::myFitnessFunction, this, _1), 6);
+		CPPUNIT_ASSERT_EQUAL_MESSAGE("Population size after selection", 6, pop.getPopulationSize());
 	}
 	
 	void doSelectionProportionalCPUTest()
 	{
-		std::vector<ealib::IndividualPtr> selected_individuals;
-		sp->getSelection()->setSelectionType(ealib::Selection::SelectionType::PROPORTIONAL);
-		selected_individuals = sp->getSelection()->doSelectionCPU(sp->getPopulation(), boost::bind(&SelectionTest::myFitnessFunction, this, _1), 6);
-		size_t size = 6;
-		CPPUNIT_ASSERT_EQUAL(size, selected_individuals.size());
+		ealib::SelectionPtr selection = ealib::CPUObjectFactory::getInstance().getSelection(ealib::Selection::SelectionType::PROPORTIONAL);
+		selection->doSelection(pop, boost::bind(&SelectionTest::myFitnessFunction, this, _1), 6);
+		CPPUNIT_ASSERT_EQUAL_MESSAGE("Population size after selection",6, pop.getPopulationSize());
 	}
 
 	void setUp()
 	{
-		sp = new ealib::SearchSpace(boost::bind(&SelectionTest::myFitnessFunction, this, _1));
-		sp->getPopulation()->setRepresentationSize(8);
+		pop.setRepresentationSize(8);
 		for (int i = 0; i < 10; ++i)
-			sp->getPopulation()->genIndividual(0, 1);
+			pop.genIndividual(0, 1);
 	}
 
 	void tearDown()
 	{
-		delete sp;
+		pop.clearPopulation();
 	}
 
 private:
-	ealib::SearchSpace *sp;
+	ealib::Population pop;
 };
 

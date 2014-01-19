@@ -2,7 +2,7 @@
 #include <Population.h>
 #include <Individual.h>
 #include <CrossoverOperator.h>
-#include <OperatorFabric.h>
+#include <ObjectFactory.h>
 #include <cppunit\TestCase.h>
 #include <cppunit\TestSuite.h>
 #include <cppunit\TestCaller.h>
@@ -30,35 +30,35 @@ public:
 
 	void setUp()
 	{
-		sp = new ealib::SearchSpace(boost::bind(&CrossoverTest::myFitnessFunction, this, _1));
-		sp->getPopulation()->setRepresentationSize(1);
+
+		pop.setRepresentationSize(1);
 		std::vector<double> representation1;
 		representation1.push_back(1);
 		std::vector<double> representation2;
 		representation2.push_back(2);
-		sp->getPopulation()->addIndividual(representation1);
-		sp->getPopulation()->addIndividual(representation2);
+		pop.addIndividual(representation1);
+		pop.addIndividual(representation2);
 	}
 
 	void tearDown()
 	{
-		delete sp;
+		pop.clearPopulation();
 	}
 
 	void doCrossoverTest()
 	{
-		ealib::eaoperator::CrossoverOperatorPtr crosssover_operator = ealib::OperatorCPUFabric::getInstance().getCrossoverOperator(0.5);
-		crosssover_operator->doCrossover(sp->getPopulation());
+		ealib::eaoperator::CrossoverOperatorPtr crosssover_operator = ealib::CPUObjectFactory::getInstance().getCrossoverOperator(0.5);
+		crosssover_operator->doCrossover(pop);
 
-		int new_population_size = sp->getPopulation()->getPopulationSize();
+		int new_population_size = pop.getPopulationSize();
 		CPPUNIT_ASSERT_EQUAL_MESSAGE("Population size after crossover", 3, new_population_size);
 
-		double new_ind_representation = sp->getPopulation()->getIndividuals().at(2)->getRepresentation()->at(0);
+		double new_ind_representation = pop.getIndividuals().at(2)->getRepresentation()->at(0);
 		CPPUNIT_ASSERT_EQUAL_MESSAGE("New individual representation", 1.5, new_ind_representation);
 	}
 	
 
 private:
-	ealib::SearchSpace *sp;
+	ealib::Population pop;
 };
 

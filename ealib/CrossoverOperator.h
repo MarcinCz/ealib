@@ -19,7 +19,7 @@ namespace ealib {
 				generator.seed(static_cast<unsigned long>(time(NULL)));
 			}
 			~CrossoverOperator() {};
-			virtual void doCrossover(const PopulationPtr& _population) = 0;
+			virtual void doCrossover(Population& _population) = 0;
 			void setPopulationRatio(const int _population_ratio) { population_ratio = _population_ratio; }
 			double getPopulationRatio() const { return population_ratio; }
 
@@ -36,7 +36,7 @@ namespace ealib {
 			CrossoverOperatorCPU(double _population_ratio)
 				:CrossoverOperator(_population_ratio) {};
 			~CrossoverOperatorCPU() {};
-			void doCrossover(const PopulationPtr& _population);
+			void doCrossover(Population& _population);
 		};
 
 		class CrossoverOperatorGPU:
@@ -46,7 +46,7 @@ namespace ealib {
 			CrossoverOperatorGPU(double _population_ratio)
 				:CrossoverOperator(_population_ratio) {};
 			~CrossoverOperatorGPU() {};
-			void doCrossover(const PopulationPtr& _population);
+			void doCrossover(Population& _population);
 		};
 
 		typedef boost::shared_ptr<CrossoverOperator> CrossoverOperatorPtr;

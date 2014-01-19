@@ -6,11 +6,11 @@ namespace ealib
 {
 	namespace eaoperator {
 
-		void NormalMutationOperatorCPU::doMutation(const PopulationPtr& _population)
+		void NormalMutationOperatorCPU::doMutation(Population& _population)
 		{
-			vector<IndividualPtr> individuals = _population->getIndividuals();
+			vector<IndividualPtr> individuals = _population.getIndividuals();
 
-			int representation_size = _population->getRepresentationSize();
+			int representation_size = _population.getRepresentationSize();
 			for(IndividualPtr ind: individuals)
 			{
 				RepresentationPtr representation = ind->getRepresentation();
@@ -23,7 +23,7 @@ namespace ealib
 			}
 		}
 
-		void NormalMutationOperatorGPU::doMutation(const PopulationPtr& _population)
+		void NormalMutationOperatorGPU::doMutation(Population& _population)
 		{
 
 		}

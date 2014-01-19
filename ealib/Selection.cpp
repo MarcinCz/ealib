@@ -4,16 +4,10 @@ using namespace std;
 
 namespace ealib
 {
-	vector<IndividualPtr> Selection::doSelectionRankingCPU(const PopulationPtr& _population, int _number_to_select)
+	void SelectionCPU::doSelectionRanking(Population& _population, int _number_to_select)
 	{
-		vector<IndividualPtr> individuals = _population->getIndividuals();
-		vector<IndividualPtr> new_individuals;
-
-		sort(individuals.begin(),individuals.end(),
-			[](const IndividualPtr ind1, const IndividualPtr ind2)
-			{
-			return ind1->getFitnessValue() < ind2->getFitnessValue();
-			});
+		vector<IndividualPtr> individuals = _population.getIndividuals();
+		_population.clearPopulation();
 		
 		int rank_sum = ((1 + individuals.size())*individuals.size()) / 2;
 		int N = individuals.size();
@@ -34,26 +28,25 @@ namespace ealib
 			{
 				if (rank_place >= current_rank_place && rank_place < current_rank_place + j)
 				{
-					new_individuals.push_back(individuals.at(j-1));
+					_population.addIndividual(*(individuals.at(j-1)->getRepresentation()));
+					_population.getIndividuals().at(i)->setFitnessValue(individuals.at(j-1)->getFitnessValue());
 					break;
 				}
 				current_rank_place += j;
 			}
 		}
 
-		return new_individuals;
 	}
 
-	vector<IndividualPtr> Selection::doSelectionProportionalCPU(const PopulationPtr& _population, int _number_to_select)
+	void SelectionGPU::doSelectionRanking(Population& _population, int _number_to_select)
 	{
-		vector<IndividualPtr> individuals = _population->getIndividuals();
-		vector<IndividualPtr> new_individuals;
 
-		sort(individuals.begin(), individuals.end(),
-			[](const IndividualPtr ind1, const IndividualPtr ind2)
-			{
-				return ind1->getFitnessValue() < ind2->getFitnessValue();
-			});
+	}
+
+	void SelectionCPU::doSelectionProportional(Population& _population, int _number_to_select)
+	{
+		vector<IndividualPtr> individuals = _population.getIndividuals();
+		_population.clearPopulation();
 
 		double fitness_sum = 0;
 		for_each(individuals.begin(), individuals.end(), [&fitness_sum](IndividualPtr ind){ fitness_sum += ind->getFitnessValue(); });
@@ -73,31 +66,52 @@ namespace ealib
 			{
 				if (prop_place >= currect_prop_place && prop_place < currect_prop_place + individuals.at(j)->getFitnessValue())
 				{
-					new_individuals.push_back(individuals.at(j));
+					_population.addIndividual(*(individuals.at(j)->getRepresentation()));
+					_population.getIndividuals().at(i)->setFitnessValue(individuals.at(j)->getFitnessValue());
 					break;
 				}
 				currect_prop_place += individuals.at(j)->getFitnessValue();
 			}
 		}
 
-		return new_individuals;
 	}
 
-	vector<IndividualPtr> Selection::doSelectionCPU(const PopulationPtr& _population, const FitnessFunction& _fitness_function, int _number_to_select)
+	void SelectionGPU::doSelectionProportional(Population& _population, int _number_to_select)
 	{
-		for (IndividualPtr ind : _population->getIndividuals())
+
+	}
+
+	void SelectionCPU::doSelection(Population& _population, const FitnessFunction& _fitness_function, int _number_to_select)
+	{
+		//calculating fitness values
+		for (IndividualPtr ind : _population.getIndividuals())
 		{
 			ind->setFitnessValue(_fitness_function(*ind));
 		}
 
+		//sorting
+		vector<IndividualPtr> individuals = _population.getIndividuals();
+
+		sort(individuals.begin(), individuals.end(),
+			[](const IndividualPtr ind1, const IndividualPtr ind2)
+			{
+				return ind1->getFitnessValue() < ind2->getFitnessValue();
+			});
+
+		//running selection
 		if (selection_type == SelectionType::PROPORTIONAL)
 		{
-			return doSelectionProportionalCPU(_population, _number_to_select);
+			doSelectionProportional(_population, _number_to_select);
 		}
 		else
 		{
-			return doSelectionRankingCPU(_population,_number_to_select);
+			doSelectionRanking(_population,_number_to_select);
 		}
+	}
+
+	void SelectionGPU::doSelection(Population& _population, const FitnessFunction& _fitness_function, int _number_to_select)
+	{
+
 	}
 }
 

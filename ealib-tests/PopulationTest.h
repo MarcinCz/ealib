@@ -32,13 +32,12 @@ public:
 
 	void setUp()
 	{
-		sp = new ealib::SearchSpace(boost::bind(&PopulationTest::myFitnessFunction, this, _1));
-		sp->getPopulation()->setRepresentationSize(8);
+		pop.setRepresentationSize(8);
 	}
 
 	void tearDown()
 	{
-		delete sp;
+		pop.clearPopulation();
 	}
 
 	void addIndividualsTest()
@@ -48,11 +47,11 @@ public:
 		{
 			representation.push_back(i);
 		}
-		sp->getPopulation()->addIndividual(representation);
-		sp->getPopulation()->genIndividual(0, 10);
-		sp->getPopulation()->genIndividual(4.5, 15.5);
+		pop.addIndividual(representation);
+		pop.genIndividual(0, 10);
+		pop.genIndividual(4.5, 15.5);
 
-		CPPUNIT_ASSERT_EQUAL(3, sp->getPopulation()->getPopulationSize());
+		CPPUNIT_ASSERT_EQUAL(3, pop.getPopulationSize());
 	}
 
 	void addIndividualWrongRepresentationTest()
@@ -64,24 +63,24 @@ public:
 		}
 		CPPUNIT_ASSERT_THROW_MESSAGE(
 			"Wrong representation size. Current size set is 8",
-			sp->getPopulation()->addIndividual(representation),
+			pop.addIndividual(representation),
 			ealib::exception::PopulationException);
 	}
 
 	void setRepresentationSizeTest()
 	{
-		sp->getPopulation()->setRepresentationSize(6);
-		CPPUNIT_ASSERT_EQUAL(6, sp->getPopulation()->getRepresentationSize());
+		pop.setRepresentationSize(6);
+		CPPUNIT_ASSERT_EQUAL(6, pop.getRepresentationSize());
 
-		sp->getPopulation()->genIndividual(0, 1);
+		pop.genIndividual(0, 1);
 		CPPUNIT_ASSERT_THROW_MESSAGE(
 			"Population need to be empty before representation size change.",
-			sp->getPopulation()->setRepresentationSize(7),
+			pop.setRepresentationSize(7),
 			ealib::exception::PopulationException);
 
 	}
 
 private:
-	ealib::SearchSpace *sp;
+	ealib::Population pop;
 };
 

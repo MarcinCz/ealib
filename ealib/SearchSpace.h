@@ -21,7 +21,7 @@ namespace ealib {
 			fitness_function(_fitness_function)
 		{
 			population = PopulationPtr(new Population());
-			selection = SelectionPtr(new Selection());
+			//selection = SelectionPtr(new Selection());
 		}
 		virtual ~SearchSpace() {};
 		void makeStepGPU();

@@ -17,29 +17,49 @@ namespace ealib {
 	{
 	public:
 		enum SelectionType { RANKIG, PROPORTIONAL };
-		Selection()
-		{
-			selection_type = SelectionType::RANKIG;
-			generator.seed(static_cast<unsigned long>(time(NULL)));
-		}
+
 		Selection(SelectionType _selection_type)
 		{
 			selection_type = _selection_type;
 			generator.seed(static_cast<unsigned long>(time(NULL)));
 		}
 		~Selection() {}
-		std::vector<IndividualPtr> doSelectionCPU(const PopulationPtr& _population, const FitnessFunction& _fitness_function, int _number_to_select);
-		std::vector<IndividualPtr> doSelectionGPU(const PopulationPtr& _population, const FitnessFunction& _fitness_function, int _number_to_select);
+		virtual void doSelection(Population& _population, const FitnessFunction& _fitness_function, int _number_to_select) = 0;
 		void setSelectionType(SelectionType _selection_type) { selection_type = _selection_type; }
 
-	private: 
-		std::vector<IndividualPtr> doSelectionRankingCPU(const PopulationPtr& _population, int _number_to_select);
-		std::vector<IndividualPtr> doSelectionProportionalCPU(const PopulationPtr& _population, int _number_to_select);
-
+	protected: 
 		SelectionType selection_type;
 		std::default_random_engine generator;
 	};
 
+	class SelectionCPU
+		:public Selection
+	{
+	public:
+		SelectionCPU(SelectionType _selection_type):
+			Selection(_selection_type) {};
+		~SelectionCPU() {};
+		void doSelection(Population& _population, const FitnessFunction& _fitness_function, int _number_to_select);
+
+	private:
+		void doSelectionRanking(Population& _population, int _number_to_select);
+		void doSelectionProportional(Population& _population, int _number_to_select);
+
+	};
+	
+	class SelectionGPU
+		:public Selection
+	{
+	public:
+		SelectionGPU(SelectionType _selection_type):
+			Selection(_selection_type) {};
+		~SelectionGPU() {};
+		void doSelection(Population& _population, const FitnessFunction& _fitness_function, int _number_to_select);
+
+	private:
+		void doSelectionRanking(Population& _population, int _number_to_select);
+		void doSelectionProportional(Population& _population, int _number_to_select);
+	};
 	typedef boost::shared_ptr<Selection> SelectionPtr;
 }
 

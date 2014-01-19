@@ -36,7 +36,7 @@
     <ClCompile Include="UniformMutationOperator.cpp">
       <Filter>Operators</Filter>
     </ClCompile>
-    <ClCompile Include="OperatorFabric.cpp">
+    <ClCompile Include="ObjectFactory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -74,7 +74,7 @@
     <ClInclude Include="CrossoverOperator.h">
       <Filter>Operators</Filter>
     </ClInclude>
-    <ClInclude Include="OperatorFabric.h">
+    <ClInclude Include="ObjectFactory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
