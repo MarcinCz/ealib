@@ -3,12 +3,16 @@
 
 namespace ealib {
 
-	/// An algorithm result class.
-	/**It contains best individual, steps taken to by an algorithm and the time it lasted.
-	*/
+	///An algorithm result class.
 	class Result
 	{
 	public:
+		/**
+		* Result constructor class.
+		* @param _steps_taken Steps taken by an algorithm.
+		* @param _running_time Algorithm's run time.
+		* @param _best_individual Best individual found by the algorithm.
+		*/
 		Result(int _steps_taken, double _running_time, Individual& _best_individual)
 		{
 			steps_taken = _steps_taken;
@@ -16,9 +20,23 @@ namespace ealib {
 			best_individual = &_best_individual;
 		}
 		~Result() {};
+
+		/**
+		* Returns best individual found.
+		* @return Best individual.
+		*/
 		Individual getBestIndividual() { return *best_individual; }
+
+		/**
+		* Return steps taken by the algorithm.
+		* @return Steps taken.
+		*/
 		int getStepsTaken() const { return steps_taken; }
-		///Returns algorithm's running time in seconds.
+
+		/**
+		* Returns algorithm's run time in seconds.
+		* @return Algorithm's run time.
+		*/
 		double getRunningTime() const { return running_time; }
 
 	private:

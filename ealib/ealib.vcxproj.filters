@@ -59,9 +59,6 @@
     <ClInclude Include="StopCondition.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SearchSpace.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="MutationOperator.h">
       <Filter>Operators</Filter>
     </ClInclude>

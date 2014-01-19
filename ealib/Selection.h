@@ -8,23 +8,41 @@
 
 namespace ealib {
 
+	///\typedef Typedef for fitness function.
 	typedef std::function<double(const Individual&)> FitnessFunction;
 
-	///A class for selection of new population
-	/**User can set selection type.
-	*Default selection type is ranking.*/
+	///An abstract class for selection of new population.
 	class Selection
 	{
 	public:
+		/**
+		* Selection type enum.
+		*/
 		enum SelectionType { RANKIG, PROPORTIONAL };
 
+		/**
+		* Selection constructor.
+		* @param _selection_type Selection type.
+		*/
 		Selection(SelectionType _selection_type)
 		{
 			selection_type = _selection_type;
 			generator.seed(static_cast<unsigned long>(time(NULL)));
 		}
 		~Selection() {}
+
+		/**
+		* Starts population selection, new population replaces old one.
+		* @param _population Population.
+		* @param _fitness_function Fitness function.
+		* @param _number_to_select Size of population after selection.
+		*/
 		virtual void doSelection(Population& _population, const FitnessFunction& _fitness_function, int _number_to_select) = 0;
+
+		/**
+		* Sets selection type.
+		* @param new selection type.
+		*/
 		void setSelectionType(SelectionType _selection_type) { selection_type = _selection_type; }
 
 	protected: 
@@ -32,13 +50,26 @@ namespace ealib {
 		std::default_random_engine generator;
 	};
 
+
+	///A class for CPU-based selection.
 	class SelectionCPU
 		:public Selection
 	{
 	public:
+		/**
+		* SelectionCPU constructor.
+		* @param _selection_type Selection type.
+		*/
 		SelectionCPU(SelectionType _selection_type):
 			Selection(_selection_type) {};
 		~SelectionCPU() {};
+
+		/**
+		* Starts population selection, new population replaces old one.
+		* @param _population Population.
+		* @param _fitness_function Fitness function.
+		* @param _number_to_select Size of population after selection.
+		*/
 		void doSelection(Population& _population, const FitnessFunction& _fitness_function, int _number_to_select);
 
 	private:
@@ -47,13 +78,25 @@ namespace ealib {
 
 	};
 	
+	///A class for GPU-based selection.
 	class SelectionGPU
 		:public Selection
 	{
 	public:
+		/**
+		* SelectionGPU constructor.
+		* @param _selection_type Selection type.
+		*/
 		SelectionGPU(SelectionType _selection_type):
 			Selection(_selection_type) {};
 		~SelectionGPU() {};
+
+		/**
+		* Starts population selection, new population replaces old one.
+		* @param _population Population.
+		* @param _fitness_function Fitness function.
+		* @param _number_to_select Size of population after selection.
+		*/
 		void doSelection(Population& _population, const FitnessFunction& _fitness_function, int _number_to_select);
 
 	private:

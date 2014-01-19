@@ -6,17 +6,25 @@
 #include "CrossoverOperator.h"
 #include "Selection.h"
 
+
+///@namespace ealib ealib namespace.
+///@namespace ealib::exception ealib::exception namespace.
+///@namespace ealib::eaoperator ealib::eaoperator namespace.
+
 namespace ealib {
 
-	typedef std::function<double(const Individual&)> FitnessFunction;
-
-	///Main class for evolationary algorithm
-	/**If mutation/crossover operator are set to null in search space, 
-	*then there's no mutation/crossover in the algorithm.
-	*/
+	///A main class for evolationary algorithm.
 	class EvolutionaryAlgorithm
 	{
 	public:
+		/** 
+		* Constructor for evolutionary algorithm with normal distribution mutation.
+		* @param _population Population of individuals.
+		* @param _stop_condition Stop condition.
+		* @param _selection Selection.
+		* @param _mutation_operator Normal distribution mutation operator.
+		* @param _crossover_operator Crossover operator pointer, optional.
+		*/
 		EvolutionaryAlgorithm(Population& _population, 
 							StopCondition& _stop_condition,
 							const FitnessFunction& _fitness_function,
@@ -28,6 +36,14 @@ namespace ealib {
 			mutation_operator = boost::dynamic_pointer_cast<eaoperator::MutationOperator>(_mutation_operator);
 		}
 
+		/** 
+		* Constructor for evolutionary algorithm with uniform distribution mutation.
+		* @param _population Population of individuals.
+		* @param _stop_condition Stop condition.
+		* @param _selection Selection pointer.
+		* @param _mutation_operator Uniform distribution mutation operator pointer.
+		* @param _crossover_operator Crossover operator pointer, optional.
+		*/
 		EvolutionaryAlgorithm(Population& _population, 
 							StopCondition& _stop_condition,
 							const FitnessFunction& _fitness_function,
@@ -39,6 +55,10 @@ namespace ealib {
 			mutation_operator = boost::dynamic_pointer_cast<eaoperator::MutationOperator>(_mutation_operator);
 		}
 		~EvolutionaryAlgorithm() {};
+		/**
+		* Starts evolutionary algorithm.
+		* @return Algorithm's result.
+		*/
 		Result run();
 
 	private:

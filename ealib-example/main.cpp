@@ -1,44 +1,33 @@
-#include <EvolutionaryAlgorithm.h>
-#include <SearchSpace.h>
-#include <Individual.h>
+#include <ealib\EvolutionaryAlgorithm.h>
+#include <ealib\ObjectFactory.h>
+#include <vld.h>
 #include <vector>
-//#include <boost/shared_ptr.hpp>
 
 using namespace std;
 using namespace ealib;
 
-double myFitnessFunction(const ealib::Individual& ind)
+double myFitnessFunction(const Individual& ind)
 {
 	return ind.getRepresentation()->at(0);
 }
 
 int main()
 {
-	
-	SearchSpace my_sp(*myFitnessFunction);
-	vector<double> representation1;
-	vector<double> representation2;
-	vector<double> representation3;
-	vector<double> representation4;
-	for (int i = 1; i < 9; i++)
-	{
-		representation1.push_back(i);
-		representation2.push_back(3*i);
-		representation3.push_back(2*i);
-		representation4.push_back(4*i);
-	}
-	my_sp.getPopulation()->addIndividual(representation1);
-	my_sp.getPopulation()->addIndividual(representation2);
-	my_sp.getPopulation()->addIndividual(representation3);
-	my_sp.getPopulation()->addIndividual(representation4);
-	my_sp.getPopulation()->genIndividual(0, 10);
-	my_sp.getPopulation()->genIndividual(4.5, 15.5);
-	vector<IndividualPtr> population_old = my_sp.getPopulation()->getIndividuals();
-	vector<IndividualPtr> population_new_ranking = my_sp.getSelection()->doSelectionCPU(my_sp.getPopulation(), *myFitnessFunction, 6);
-	my_sp.getSelection()->setSelectionType(Selection::SelectionType::PROPORTIONAL);
-	vector<IndividualPtr> population_new_proportional = my_sp.getSelection()->doSelectionCPU(my_sp.getPopulation(), *myFitnessFunction, 7);
-	return 0;
-	//ealib::StopCondition sc = ealib::StopCondition(10, 5.0);
-	//ealib::EvolutionaryAlgorithm(my_sp, sc);
+	Population pop;
+	pop.setRepresentationSize(1);
+		for (int i = 0; i < 100; ++i)
+			pop.genIndividual(0, 1);
+	NormalMutationOperatorPtr mutation = CPUObjectFactory::getInstance().getNormalMutationOperator(2,2);
+	CrossoverOperatorPtr crossover = CPUObjectFactory::getInstance().getCrossoverOperator(0.1);
+	SelectionPtr selection = CPUObjectFactory::getInstance().getSelection(Selection::RANKIG);
+	StopCondition stop_condition = StopCondition(1000, 4);
+	EvolutionaryAlgorithm algorithm = EvolutionaryAlgorithm(pop,
+															stop_condition,
+															&myFitnessFunction,
+															selection,
+															mutation);
+
+	Result result = algorithm.run();
+
 }
 

@@ -7,10 +7,16 @@ namespace ealib
 {
 	namespace eaoperator {
 
+		///An abstract class for normal mutation operator.
 		class NormalMutationOperator:
 			virtual public MutationOperator
 		{
 		public:
+			/**
+			* NormalMutationOperator constructor.
+			* @param _standard_deviation Standard deviation for mutation.
+			* @param _probability Mutation probability.
+			*/
 			NormalMutationOperator(double _standard_deviation, double _probability):
 				standard_deviation(_standard_deviation)
 			{
@@ -19,42 +25,61 @@ namespace ealib
 				prob_distribution = std::uniform_real_distribution<double>(0,100);
 			};
 			~NormalMutationOperator() {};
+
+			/**
+			* Starts population mutation.
+			* @param _population Population to be mutated.
+			*/
 			virtual void doMutation(Population& _population) = 0;
 			void setStandardDeviation(double _standard_deviation) { standard_deviation =_standard_deviation; }
 			double getStandardDeviation() { return standard_deviation; }
-			void setProbability(double _probability)
-			{
-				if(_probability < 0 || _probability > 100)
-					throw exception::MutationOperatorException("Probability must be between or equal to 0 and 100.");
 
-				probability = _probability;
-			}
-			double getProbability() { return probability; }
 		protected:
 			std::default_random_engine generator;
 			std::uniform_real_distribution<double> prob_distribution;
 			std::normal_distribution<double> distribution;
-			double probability;
 			double standard_deviation;
 		};
 
+		///A class for CPU-based normal distribution mutation operator.
 		class NormalMutationOperatorCPU:
 			public NormalMutationOperator, public MutationOperatorCPU
 		{
 		public:
+			/**
+			* NormalMutationOperator constructor.
+			* @param _standard_deviation Standard deviation for mutation.
+			* @param _probability Mutation probability.
+			*/
 			NormalMutationOperatorCPU(double _standard_deviation, double _probability):
 				NormalMutationOperator(_standard_deviation, _probability) {};
 			~NormalMutationOperatorCPU() {};
+
+			/**
+			* Starts population mutation.
+			* @param _population Population to be mutated.
+			*/
 			void doMutation(Population& _population);
 		};
 
+		///A class for GPU-based normal distribution mutation operator.
 		class NormalMutationOperatorGPU:
 			public NormalMutationOperator, public MutationOperatorGPU
 		{
 		public:
+			/**
+			* NormalMutationOperator constructor.
+			* @param _standard_deviation Standard deviation for mutation.
+			* @param _probability Mutation probability.
+			*/
 			NormalMutationOperatorGPU(double _standard_deviation, double _probability):
 				NormalMutationOperator(_standard_deviation, _probability) {};
 			~NormalMutationOperatorGPU() {};
+
+			/**
+			* Starts population mutation.
+			* @param _population Population to be mutated.
+			*/
 			void doMutation(Population& _population);
 		};
 

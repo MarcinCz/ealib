@@ -6,12 +6,16 @@ namespace ealib {
 
 	typedef boost::shared_ptr<std::vector<double>> RepresentationPtr;
 
-	///A class for individual.
+	///A class for population's individual.
 	/**It holds representation and fitness function value.
 	*/
 	class Individual
 	{
 	public:
+		/**
+		* Individual constructor.
+		* @param _representation Individual's number representation.
+		*/
 		Individual(std::vector<double> _representation) { representation = RepresentationPtr(new std::vector<double>(_representation)); }
 		~Individual() {};
 		double getFitnessValue() const { return fitness_value; }
