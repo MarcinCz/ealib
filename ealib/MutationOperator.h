@@ -20,14 +20,14 @@ namespace ealib{
 		};
 
 
-		class MutationOperatorCPU: public MutationOperator
+		class MutationOperatorCPU: virtual public MutationOperator
 		{
 		public:
 			virtual ~MutationOperatorCPU() {};
 			virtual void doMutation(const PopulationPtr& _population) = 0;
 		};
 
-		class MutationOperatorGPU: public MutationOperator
+		class MutationOperatorGPU: virtual public MutationOperator
 		{
 		public:
 			virtual ~MutationOperatorGPU() {};

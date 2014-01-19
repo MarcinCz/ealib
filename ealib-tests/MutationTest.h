@@ -43,10 +43,11 @@ public:
 
 	void doMutationTest()
 	{
-		ealib::eaoperator::MutationOperatorPtr uniform_mutation_opeator = ealib::OperatorCPUFabric::getInstance().getUniformMutationOperator(2, 100);
+
+		ealib::eaoperator::UniformMutationOperatorPtr uniform_mutation_opeator = ealib::OperatorCPUFabric::getInstance().getUniformMutationOperator(2, 100);
 		CPPUNIT_ASSERT_NO_THROW(uniform_mutation_opeator->doMutation(sp->getPopulation()));
 
-		ealib::eaoperator::MutationOperatorPtr normal_mutation_opeator = ealib::OperatorCPUFabric::getInstance().getNormalMutationOperator(2, 100);
+		ealib::eaoperator::NormalMutationOperatorPtr normal_mutation_opeator = ealib::OperatorCPUFabric::getInstance().getNormalMutationOperator(2, 100);
 		CPPUNIT_ASSERT_NO_THROW(normal_mutation_opeator->doMutation(sp->getPopulation()));
 
 		CPPUNIT_ASSERT(true);

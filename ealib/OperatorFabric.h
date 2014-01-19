@@ -11,8 +11,8 @@ namespace ealib {
 	{
 	public:
 
-		virtual MutationOperatorPtr getNormalMutationOperator(double _standard_deviation, double _probability) const = 0;
-		virtual MutationOperatorPtr getUniformMutationOperator(double _range, double _probability) const = 0;
+		virtual NormalMutationOperatorPtr getNormalMutationOperator(double _standard_deviation, double _probability) const = 0;
+		virtual UniformMutationOperatorPtr getUniformMutationOperator(double _range, double _probability) const = 0;
 		virtual CrossoverOperatorPtr getCrossoverOperator(double _population_ratio) const = 0;
 	};
 
@@ -22,13 +22,13 @@ namespace ealib {
 	public:
 		static OperatorCPUFabric& getInstance();
 
-		MutationOperatorPtr getNormalMutationOperator(double _standard_deviation, double _probability) const
+		NormalMutationOperatorPtr getNormalMutationOperator(double _standard_deviation, double _probability) const
 		{
-			return MutationOperatorPtr(new NormalMutationOperatorCPU(_standard_deviation, _probability));
+			return NormalMutationOperatorPtr(new NormalMutationOperatorCPU(_standard_deviation, _probability));
 		}
-		MutationOperatorPtr getUniformMutationOperator(double _range, double _probability) const
+		UniformMutationOperatorPtr getUniformMutationOperator(double _range, double _probability) const
 		{
-			return MutationOperatorPtr(new UniformMutationOperatorCPU(_range, _probability));
+			return UniformMutationOperatorPtr(new UniformMutationOperatorCPU(_range, _probability));
 		}
 		CrossoverOperatorPtr getCrossoverOperator(double _population_ratio) const
 		{
@@ -48,13 +48,13 @@ namespace ealib {
 	public:
 		static OperatorGPUFabric& getInstance();
 
-		MutationOperatorPtr getNormalMutationOperator(double _standard_deviation, double _probability) const
+		NormalMutationOperatorPtr getNormalMutationOperator(double _standard_deviation, double _probability) const
 		{
-			return MutationOperatorPtr(new NormalMutationOperatorGPU(_standard_deviation, _probability));
+			return NormalMutationOperatorPtr(new NormalMutationOperatorGPU(_standard_deviation, _probability));
 		}
-		MutationOperatorPtr getUniformMutationOperator(double _range, double _probability) const
+		UniformMutationOperatorPtr getUniformMutationOperator(double _range, double _probability) const
 		{
-			return MutationOperatorPtr(new UniformMutationOperatorGPU(_range, _probability));
+			return UniformMutationOperatorPtr(new UniformMutationOperatorGPU(_range, _probability));
 		}
 		CrossoverOperatorPtr getCrossoverOperator(double _population_ratio) const
 		{

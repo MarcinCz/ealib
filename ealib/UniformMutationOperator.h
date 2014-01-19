@@ -6,7 +6,8 @@ namespace ealib
 {
 	namespace eaoperator {
 
-		class UniformMutationOperator
+		class UniformMutationOperator:
+			virtual public MutationOperator
 		{
 		public:
 			UniformMutationOperator(double _range, double _probability):
@@ -20,6 +21,7 @@ namespace ealib
 				prob_distribution = std::uniform_real_distribution<double>(0,100);
 			}
 			~UniformMutationOperator() {}
+			virtual void doMutation(const PopulationPtr& _population) = 0;
 			void setRange(double _range) { range = _range; }
 			double getRange() { return range; }
 			void setProbability(double _probability)
@@ -59,6 +61,8 @@ namespace ealib
 			~UniformMutationOperatorGPU() {};
 			void doMutation(const PopulationPtr& _population);
 		};
+
+		typedef boost::shared_ptr<UniformMutationOperator> UniformMutationOperatorPtr;
 	}
 }
 
