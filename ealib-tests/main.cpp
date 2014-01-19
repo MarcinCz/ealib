@@ -5,6 +5,7 @@
 #include "MutationTest.h"
 #include "CrossoverTest.h"
 #include "StopConditionTest.h"
+#include "EvolutionaryAlgorithmTest.h"
 
 int main()
 {
@@ -14,6 +15,7 @@ int main()
 	runner.addTest(MutationTest::suite());
 	runner.addTest(CrossoverTest::suite());
 	runner.addTest(StopConditionTest::suite());
+	runner.addTest(EvolutionaryAlgorithmTest::suite());
 	runner.run();
 	std::cin.get();
 	return 0;

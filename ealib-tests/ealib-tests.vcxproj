@@ -39,7 +39,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>D:\studia\sem7\zpr\ealib\ealib;$(IncludePath)</IncludePath>
+    <IncludePath>D:\studia\sem7\zpr\ealib;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -73,6 +73,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CrossoverTest.h" />
+    <ClInclude Include="EvolutionaryAlgorithmTest.h" />
     <ClInclude Include="MutationTest.h" />
     <ClInclude Include="PopulationTest.h" />
     <ClInclude Include="SelectionTest.h" />

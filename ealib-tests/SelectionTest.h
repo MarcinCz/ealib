@@ -1,7 +1,4 @@
-#include <ObjectFactory.h>
-#include <Selection.h>
-#include <Population.h>
-#include <Individual.h>
+#include <ealib\ObjectFactory.h>
 #include <boost\bind.hpp>
 #include <cppunit\TestCase.h>
 #include <cppunit\TestSuite.h>

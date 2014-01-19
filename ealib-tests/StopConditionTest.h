@@ -1,4 +1,4 @@
-#include <StopCondition.h>
+#include <ealib\StopCondition.h>
 #include <cppunit\TestCase.h>
 #include <cppunit\TestSuite.h>
 #include <cppunit\TestCaller.h>

@@ -17,8 +17,8 @@ namespace ealib {
 	class EvolutionaryAlgorithm
 	{
 	public:
-		EvolutionaryAlgorithm(const Population& _population, 
-							const StopCondition& _stop_condition,
+		EvolutionaryAlgorithm(Population& _population, 
+							StopCondition& _stop_condition,
 							const FitnessFunction& _fitness_function,
 							const SelectionPtr& _selection,
 							const eaoperator::NormalMutationOperatorPtr& _mutation_operator,
@@ -28,8 +28,8 @@ namespace ealib {
 			mutation_operator = boost::dynamic_pointer_cast<eaoperator::MutationOperator>(_mutation_operator);
 		}
 
-		EvolutionaryAlgorithm(const Population& _population, 
-							const StopCondition& _stop_condition,
+		EvolutionaryAlgorithm(Population& _population, 
+							StopCondition& _stop_condition,
 							const FitnessFunction& _fitness_function,
 							const SelectionPtr& _selection,
 							const eaoperator::UniformMutationOperatorPtr& _mutation_operator,
@@ -42,14 +42,14 @@ namespace ealib {
 		Result run();
 
 	private:
-		void BaseConstructor(const Population& _population, 
+		void BaseConstructor(Population& _population, 
 							const FitnessFunction& _fitness_function, 
 							const SelectionPtr& _selection, 
 							const eaoperator::CrossoverOperatorPtr& _crossover_operator, 
-							const StopCondition& _stop_condition)
+							StopCondition& _stop_condition)
 		{
-			*stop_condition = _stop_condition;
-			*population = _population;
+			stop_condition = &_stop_condition;
+			population = &_population;
 			fitness_function = _fitness_function;
 			selection = _selection;
 			if(crossover_operator)

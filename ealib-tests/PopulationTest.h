@@ -1,6 +1,4 @@
-#include <SearchSpace.h>
-#include <Population.h>
-#include <Individual.h>
+#include <ealib\Population.h>
 #include <cppunit\TestCase.h>
 #include <cppunit\TestSuite.h>
 #include <cppunit\TestCaller.h>
@@ -22,6 +20,8 @@ public:
 			"addIndividualWrongRepresentationTest", &PopulationTest::addIndividualWrongRepresentationTest));
 		suite->addTest(new CppUnit::TestCaller<PopulationTest>(
 			"setRepresentationSizeTest", &PopulationTest::setRepresentationSizeTest));
+		suite->addTest(new CppUnit::TestCaller<PopulationTest>(
+			"setNegativeRepresentationSizeTest", &PopulationTest::setNegativeRepresentationSizeTest));
 		return suite;
 	}
 
@@ -78,6 +78,14 @@ public:
 			pop.setRepresentationSize(7),
 			ealib::exception::PopulationException);
 
+	}
+
+	void setNegativeRepresentationSizeTest()
+	{
+		CPPUNIT_ASSERT_THROW_MESSAGE(
+			"Representation size must be positive.",
+			pop.setRepresentationSize(0),
+			ealib::exception::PopulationException);
 	}
 
 private:

@@ -1,9 +1,4 @@
-#include <SearchSpace.h>
-#include <Population.h>
-#include <Individual.h>
-#include <NormalMutationOperator.h>
-#include <UniformMutationOperator.h>
-#include <ObjectFactory.h>
+#include <ealib\ObjectFactory.h>
 #include <cppunit\TestCase.h>
 #include <cppunit\TestSuite.h>
 #include <cppunit\TestCaller.h>
@@ -22,11 +17,6 @@ public:
 		suite->addTest(new CppUnit::TestCaller<MutationTest>(
 			"wrongProbabilityTest", &MutationTest::wrongProbabilityTest));
 		return suite;
-	}
-
-	double myFitnessFunction(const ealib::Individual& ind)
-	{
-		return ind.getRepresentation()->at(0);
 	}
 
 	void setUp()

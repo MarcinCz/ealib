@@ -35,5 +35,8 @@
     <ClInclude Include="StopConditionTest.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="EvolutionaryAlgorithmTest.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

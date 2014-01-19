@@ -34,7 +34,7 @@ namespace ealib {
 		StopCondition(int _max_steps, double _min_fitness_value)
 		{
 			setMaxSteps(_max_steps);
-			min_fitness_value = min_fitness_value;
+			min_fitness_value = _min_fitness_value;
 			min_fitness_value_set = true;
 			max_steps_set = true;
 		}

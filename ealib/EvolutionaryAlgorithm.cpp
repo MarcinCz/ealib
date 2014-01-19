@@ -24,6 +24,7 @@ namespace ealib {
 				&& population->getBestIndividual()->getFitnessValue() >= stop_condition->getMinFitnessValue())
 			{
 				ind = population->getBestIndividual();
+				break;
 			}
 
 			if(crossover_operator_set)

@@ -36,8 +36,10 @@ namespace ealib {
 
 	void Population::setRepresentationSize(int _representation_size)
 	{
+		if (_representation_size < 1)
+			throw PopulationException("Representation size must be positive.");
 		if (getRepresentationSize() == _representation_size)
-			return;
+			return;	
 		if (getPopulationSize() != 0)
 			throw PopulationException("Population need to be empty before representation size change.");
 		representation_size = _representation_size;

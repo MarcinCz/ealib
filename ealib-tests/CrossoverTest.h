@@ -1,8 +1,4 @@
-#include <SearchSpace.h>
-#include <Population.h>
-#include <Individual.h>
-#include <CrossoverOperator.h>
-#include <ObjectFactory.h>
+#include <ealib\ObjectFactory.h>
 #include <cppunit\TestCase.h>
 #include <cppunit\TestSuite.h>
 #include <cppunit\TestCaller.h>
@@ -21,11 +17,6 @@ public:
 			"doCrossoverTest", &CrossoverTest::doCrossoverTest));
 
 		return suite;
-	}
-
-	double myFitnessFunction(const ealib::Individual& ind)
-	{
-		return ind.getRepresentation()->at(0);
 	}
 
 	void setUp()
