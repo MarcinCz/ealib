@@ -1,9 +1,9 @@
-#include <ealib\ObjectFactory.h>
-#include <ealib\EvolutionaryAlgorithm.h>
-#include <boost\bind.hpp>
-#include <cppunit\TestCase.h>
-#include <cppunit\TestSuite.h>
-#include <cppunit\TestCaller.h>
+#include <ealib/ObjectFactory.h>
+#include <ealib/EvolutionaryAlgorithm.h>
+#include <boost/bind.hpp>
+#include <cppunit/TestCase.h>
+#include <cppunit/TestSuite.h>
+#include <cppunit/TestCaller.h>
 #include <vector>
 
 

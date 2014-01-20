@@ -19,8 +19,6 @@ namespace ealib {
 
 	void Population::genIndividual(double _min, double _max, int _number)
 	{
-		double range = _max - _min;
-
 		for (int j = 0; j < _number; ++j)
 		{
 			vector<double> representation;
@@ -47,7 +45,7 @@ namespace ealib {
 
 	void Population::addIndividual(vector<double> _representation)
 	{
-		if (getRepresentationSize() != _representation.size())
+		if (static_cast<unsigned int>(getRepresentationSize()) != _representation.size())
 			throw PopulationException("Wrong representation size. Current size set is " + getRepresentationSize());
 		individuals.push_back(IndividualPtr(new Individual(_representation)));
 	}

@@ -1,6 +1,6 @@
 #pragma once
 #include <random>
-#include "mutationoperator.h"
+#include "MutationOperator.h"
 
 namespace ealib
 {

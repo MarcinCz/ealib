@@ -2,6 +2,7 @@
 #include <vector>
 #include <random>
 #include <boost/shared_ptr.hpp>
+#include <stdexcept>
 #include <time.h>     
 #include "Individual.h"
 
@@ -55,13 +56,13 @@ namespace ealib{
 		*/
 		double getFitnessValueSum(); 
 
-		int getPopulationSize() const { return individuals.size(); }
+		size_t getPopulationSize() const { return individuals.size(); }
 		/**
 		* Sets size of individual representation, default is 8.
 		* @param New representatin size.
 		* @throw ealib::exception::PopulationException When population is not empty or size is not a positive number.
 		*/
-		void setRepresentationSize(int _representation_size);
+		void  setRepresentationSize(int _representation_size);
 
 		int getRepresentationSize() const { return representation_size; }
 	private: 

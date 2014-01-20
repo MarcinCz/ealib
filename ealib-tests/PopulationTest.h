@@ -1,8 +1,8 @@
-#include <ealib\Population.h>
-#include <cppunit\TestCase.h>
-#include <cppunit\TestSuite.h>
-#include <cppunit\TestCaller.h>
-#include <boost\bind.hpp>
+#include <ealib/Population.h>
+#include <cppunit/TestCase.h>
+#include <cppunit/TestSuite.h>
+#include <cppunit/TestCaller.h>
+#include <boost/bind.hpp>
 #include <vector>
 
 
@@ -51,7 +51,7 @@ public:
 		pop.genIndividual(0, 10);
 		pop.genIndividual(4.5, 15.5);
 
-		CPPUNIT_ASSERT_EQUAL(3, pop.getPopulationSize());
+		CPPUNIT_ASSERT_EQUAL(3, static_cast<int>(pop.getPopulationSize()));
 	}
 
 	void addIndividualWrongRepresentationTest()

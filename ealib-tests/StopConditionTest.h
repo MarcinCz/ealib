@@ -1,7 +1,7 @@
-#include <ealib\StopCondition.h>
-#include <cppunit\TestCase.h>
-#include <cppunit\TestSuite.h>
-#include <cppunit\TestCaller.h>
+#include <ealib/StopCondition.h>
+#include <cppunit/TestCase.h>
+#include <cppunit/TestSuite.h>
+#include <cppunit/TestCaller.h>
 
 class StopConditionTest : public CppUnit::TestFixture
 {

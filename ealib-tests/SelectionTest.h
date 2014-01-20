@@ -1,8 +1,8 @@
-#include <ealib\ObjectFactory.h>
-#include <boost\bind.hpp>
-#include <cppunit\TestCase.h>
-#include <cppunit\TestSuite.h>
-#include <cppunit\TestCaller.h>
+#include <ealib/ObjectFactory.h>
+#include <boost/bind.hpp>
+#include <cppunit/TestCase.h>
+#include <cppunit/TestSuite.h>
+#include <cppunit/TestCaller.h>
 #include <vector>
 
 
@@ -29,14 +29,14 @@ public:
 	{
 		ealib::SelectionPtr selection = ealib::CPUObjectFactory::getInstance().getSelection(ealib::Selection::SelectionType::RANKIG);
 		selection->doSelection(pop, boost::bind(&SelectionTest::myFitnessFunction, this, _1), 6);
-		CPPUNIT_ASSERT_EQUAL_MESSAGE("Population size after selection", 6, pop.getPopulationSize());
+		CPPUNIT_ASSERT_EQUAL_MESSAGE("Population size after selection", 6, static_cast<int>(pop.getPopulationSize()));
 	}
 	
 	void doSelectionProportionalCPUTest()
 	{
 		ealib::SelectionPtr selection = ealib::CPUObjectFactory::getInstance().getSelection(ealib::Selection::SelectionType::PROPORTIONAL);
 		selection->doSelection(pop, boost::bind(&SelectionTest::myFitnessFunction, this, _1), 6);
-		CPPUNIT_ASSERT_EQUAL_MESSAGE("Population size after selection",6, pop.getPopulationSize());
+		CPPUNIT_ASSERT_EQUAL_MESSAGE("Population size after selection",6, static_cast<int>(pop.getPopulationSize()));
 	}
 
 	void setUp()
